@@ -16,7 +16,7 @@ public abstract  class Model {
     protected Conexion connection = new Conexion();
     
     public abstract Model save();
-    public abstract ArrayList<Model> getObjects(String[] params);
+    public abstract ArrayList<Model> getObjects(String[][] atributo_valor);
     public abstract ArrayList<Model> getAllObjects();
     
     
