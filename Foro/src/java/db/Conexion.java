@@ -44,4 +44,14 @@ public class Conexion {
             return null;
         }
     }
+    
+    public boolean ejecutarInstruccion(String query){
+        try {
+            st.executeUpdate(query);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
