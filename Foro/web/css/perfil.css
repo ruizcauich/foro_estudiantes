@@ -1,0 +1,135 @@
+*{
+}
+
+
+
+.contenedor-perfil{
+  background: #edf2f5;
+  margin: 15px;
+  padding: 40px;
+  height: 540px;
+}
+
+/*
+Contenedor del avatar del usuario
+*/
+
+.contenedor-avatar{
+  float: left;
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  margin-right: 100px;
+  margin-left: 70px;
+  /*background-color:magenta;*/
+
+}
+
+.contenedor-avatar img{
+  -webkit-border-radius: 45px;
+  -moz-border-radius: 45px;
+  border-radius: 45px;
+  border: 5px solid  #32a4a7;
+}
+
+.contenedor-avatar img:hover{
+  border: 6px solid  #278183;
+  cursor: pointer;
+}
+
+
+/*
+.contenedor-avatar .boton-avatar{
+  background-color: #32a4a7;
+  border: 2px solid  #278183;
+  padding: 10px;
+  width: 150px;
+  margin: 30px;
+  font-size: 1em;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+  text-align: center;
+  color: white;
+  border-radius: 13px;
+
+}
+
+
+.contenedor-avatar .boton-avatar:hover{
+  background-color: rgb(198, 51, 56);
+  border-color: rgb(142, 38, 42);
+  cursor: pointer;
+}
+*/
+
+/*
+  Contenedor de los datos del usuario
+*/
+
+.contenedor-datos{
+  float: right;
+  width: 700px;
+  height: 500px;
+  margin: auto 100px auto -15px;
+  padding: 20px;
+  /*background-color: yellow;*/
+
+}
+
+.contenedor-datos .formulario-perfil-datos{
+
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -20px;
+  /*background-color: green;*/
+  padding: 0px;
+
+}
+
+.contenedor-campo{
+  display: inline-block;
+  width: 500px;
+  /*background-color: blue;*/
+  margin: 10px;
+  margin-bottom: 25px;
+}
+
+.contenedor-campo label{
+  font-size: 1.3em;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+  font-weight: 400;
+  margin-left: 15px;
+  margin-right: 15px;
+  color: rgb(60, 61, 62);
+}
+
+.contenedor-campo input[type="text"],
+.contenedor-campo input[type="password"]{
+  width: 300px;
+  margin-left: 10px;
+  padding: 5px;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+  font-weight: lighter;
+  font-size: 1em;
+  color: #a8a8a8;
+
+}
+/*
+.contenedor-campo .boton-guardar{
+  background-color: #32a4a7;
+  border: 2px solid  #278183;
+  padding: 10px;
+  width: 150px;
+  margin: 5px;
+  font-size: 1em;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+  text-align: center;
+  color: white;
+  border-radius: 13px;
+}
+
+.contenedor-campo .boton-guardar:hover{
+  background-color: #c63338;
+  border-color: #8e262a;
+  cursor: pointer;
+}*/

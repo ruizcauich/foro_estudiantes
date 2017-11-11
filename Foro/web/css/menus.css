@@ -1,0 +1,78 @@
+header nav{
+    text-align: center;
+
+}
+
+header nav #logo{
+    float: left;
+    margin: 22px;
+}
+
+img#logo{
+  width: 200px;
+  height: 90px;
+  margin: -70px !important;
+  margin-top: -15px !important;
+  margin-right: 30px;
+  margin-left: 0px !important;
+}
+
+#logo {
+  -webkit-mask-image: url('../img/logo.png');
+  -webkit-mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  -webkit-mask-attachment: fixed;
+}
+
+nav .busqueda{
+    display: inline-block;
+    width: 280px;
+    margin: 0 auto;
+    text-align: center;
+    margin: 20px;
+
+}
+nav .busqueda input{
+    border-radius: 5px;
+    height: 22px;
+    font-size: 16px;
+    padding: 2px;
+    padding-left: 10px;
+}
+nav .busqueda .boton{
+    height: 26px;
+    border: none;
+    border-radius: 3px;
+    font-family:  'Roboto', Arial, Helvetica, sans-serif, verdana;
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
+
+}
+
+nav .menu{
+    list-style: none;
+    padding: 0px;
+    display: inline-block;
+    float: right;
+    height: 70px;
+    margin: 0;
+
+}
+nav .menu li{
+    display: inline-block;
+    height: 100%;
+    float: left;
+    margin-left: 20px;
+}
+nav .menu li a{
+    display: inline-block;
+    padding: 23px;
+    text-decoration: none;
+    color: #fff;
+    font-family:  'Roboto', Arial, Helvetica, sans-serif, verdana;
+    transition: background-color .5s;
+
+}
+nav .menu li a:hover{ background-color:  #19cde5;}

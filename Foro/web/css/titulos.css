@@ -1,0 +1,21 @@
+.titulo_h1{
+  text-align: center;
+  font-family: 'Roboto', Arial, sans-serif,Helvetica;
+  font-size: 2em;
+  color: #0b264e;
+  padding: 30px;
+}
+
+.titulo_h2{
+  font-family: 'Roboto', Arial, sans-serif,Helvetica;
+  font-size: 1.5em;
+  color: #0b264e;
+  padding: 20px;
+}
+
+.titulo_h3{
+  font-family: 'Roboto', Arial, sans-serif,Helvetica;
+  font-size: 1.2em;
+  color: #0b264e;
+  padding: 15px;
+}

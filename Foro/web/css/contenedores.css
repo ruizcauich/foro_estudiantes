@@ -1,0 +1,154 @@
+body{
+   margin: 0;
+   background-color: rgb(245, 247, 243);
+}
+header{
+    background-color: #32a4a7;
+    height: 70px;
+    font-size: 20px;
+    position: relative;
+
+}
+
+.contenedor{
+    margin: 0 50px;
+
+}
+
+.contenedor .contenedor-contenido{
+    display: inline-block;
+    width: 800px;
+    vertical-align: top;
+    margin-top: 25px;
+}
+#navegacion-lateral{
+    display: inline-block;
+    width: 400px;
+    border-left: 3px solid #d3d3d3;
+    padding: 20px;
+    background-color: #def1fc;
+}
+.resumen-usuario{
+     text-align: center;
+    width: 100%;
+}
+.resumen-usuario .nombre_usuario{
+    color: #55b927;
+    font-family: monospace;
+    font-size: 25px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+}
+
+.area-de-notificacion{
+    border: none;
+    border-top: 1px dotted rgba( 57, 17, 201, 0.474 );
+}
+
+.area-de-notificacion h4{
+  font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.notificacion{
+    border-radius: 7px;
+    padding: 15px;
+    border: 2px solid #2697e2;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    transition: box-shadow 0.3s;
+    margin: 20px;
+    box-shadow: 1px 2px 5px #999;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+    line-height: 23px;
+
+}
+
+.notificacion:hover{
+     background-color:rgba( 43, 143, 231, 0.15 );
+    /*box-shadow: none;*/
+    box-shadow: 2px 2px 5px #999;
+}
+
+
+/*
+    CONTENEORES RELACIONADOS A LINKS HACIA ALGUNA PUBLICACIÓN
+*/
+.publicacion-link{
+    border:3px solid #2697e2;
+    border-radius: 6px;
+    width: 90%;
+    height: 120px;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    transition: box-shadow 0.3s;
+    margin: 20px;
+    padding: 20px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif, verdana;
+
+}
+
+.publicacion-link:hover{
+    background-color:rgba( 43, 143, 231, 0.15 );
+    /*box-shadow: none;*/
+    box-shadow: 1px 2px 5px #999;
+
+
+
+}
+
+.avatar{
+    display: inline-block;
+    vertical-align: middle;
+}
+.avatar img{
+    height: 70px;
+    width: 70px;
+    border-radius: 5px;
+    margin: 0px;
+
+}
+
+.publicacion-link .contenido{
+    margin-left: 5px;
+    display: inline-block;
+    width: 85%;
+    vertical-align: middle;
+}
+
+.titulo h2{
+    margin: 0px;
+    color: #7942cb
+}
+.datos{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d6d6d6;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.datos .usuario{
+    color: #55b927;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.datos .fecha-publicacion{
+    color: #878787
+}
+
+.resumen{
+    color: #4c4c4c
+}
+
+.area-publicar {
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center
+}
+
+.publicar textarea {
+    width: 100%;
+    
+}

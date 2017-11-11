@@ -1,0 +1,96 @@
+body{
+  background-color: #fff;
+  background-image:
+  linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
+}
+
+img#answer{
+  width: 400px;
+  height: 250px;
+  margin-bottom: -40px;
+}
+
+#answer {
+  -webkit-mask-image: url('../img/logo.png');
+  -webkit-mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  -webkit-mask-attachment: fixed;
+}
+
+
+.login_formulario{
+  width: 35%;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0em;
+  padding: 2em;
+
+}
+
+input.campo{
+  margin: 0.5em;
+  margin-left: 0px;
+  width: 90%;
+  padding: 30px 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+input:focus{
+  /*border: 1px solid #red;*/
+}
+/*
+input.login_botonIngrese{
+  width: 90%;
+  padding: 30px 15px;
+  background-color: #32a4a7;
+  color: white;
+  border: 3px solid #278183;
+  font-size: 1.3em;
+  border-radius: 13px;
+}
+
+input.login_botonIngrese:hover{
+  background-color: rgb(198, 51, 56);
+  border-color: rgb(142, 38, 42);
+  cursor: pointer;
+}
+*/
+input.campo{
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 1.3em;
+  padding-bottom: 1.3em;
+  width: 80%;
+  border: 2px solid #ccc;
+
+}
+
+input.campo::-webkit-input-placeholder {
+  font-family: Arial;
+  font-size: 1.3em;
+}
+
+
+img.login_iconos{
+  display: inline-block;
+  vertical-align: top;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ccc;
+  margin-right: -5px;
+  margin-top: 7px;
+  padding: 0px;
+}
+
+p{
+  font-size: .8em;
+  font-family: Arial;
+  color: rgb(108, 108, 108);
+}
