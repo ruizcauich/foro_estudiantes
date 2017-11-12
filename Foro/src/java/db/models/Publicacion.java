@@ -34,7 +34,35 @@ public class Publicacion extends Model{
    
     @Override
     public Model save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String [][] atributos = {{"id",String.valueOf(id)},{"topico",topico}};
+        
+        Publicacion pubAux = new Publicacion(usuario,id,fecha,contenido,topico);
+        
+        if(pubAux.getObjects(atributos).isEmpty()){
+            String query = "INSERT INTO Publicaciones VALUES('"+usuario+"',NULL,'"+fecha+"','"+contenido+"'"
+                    + ",'"+topico+"');";
+            if(connection.ejecutarInstruccion(query)){
+                return this;
+            }
+            return null;
+        }
+        else{
+            
+            String query = "UPDATE Publicaciones SET"
+                  + " usuario = '"+usuario+"',"
+                  + " fecha = '"+fecha+"',"
+                  + " contenido = '"+contenido+"',"
+                  + " topico = '"+topico+"' WHERE id = '"+id+"';";
+        
+            System.out.println(query);
+            System.out.println(usuario);
+            
+            if(connection.ejecutarInstruccion(query)){
+                return this;
+            }
+            return null;
+        }
     }
 
     @Override
@@ -92,6 +120,22 @@ public class Publicacion extends Model{
         return pubs;
     }
     
+    @Override
+    public boolean delete() {
+        try{
+            String query = "DELETE FROM Publicaciones WHERE id = '"+id+"'";
+            if(connection.ejecutarInstruccion(query))
+            {
+                return true;
+            }
+            return false;
+        
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public String toString(){return this.topico;}
      public int getUsuario() {
         return usuario;
@@ -132,4 +176,6 @@ public class Publicacion extends Model{
     public void setTopico(String topico) {
         this.topico = topico;
     }
+
+
 }
