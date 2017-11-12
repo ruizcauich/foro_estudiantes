@@ -11,7 +11,7 @@
 import db.models.*;
 public class Tests {
     public static void main(String[] args){
-        Comentario c = new Comentario();
+        ComentarioToComentario c = new ComentarioToComentario();
         System.out.println( c.getAllObjects() );
         
         
