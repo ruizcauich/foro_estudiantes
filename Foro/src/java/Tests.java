@@ -8,18 +8,11 @@
  *
  * @author augusto
  */
-import db.models.Usuario;
+import db.models.*;
 public class Tests {
     public static void main(String[] args){
-        Usuario us = new Usuario(2,"Jose","alfredo","uady","jose","jose","jose","",true);
-       // us.save();
-       String[][] a = {{"nombre","Jose"}};
-        
-        
-        
-        
-        us = (Usuario)us.getObjects(a).get(0);
-        System.out.println(us.isEsModerador());
+        Comentario c = new Comentario();
+        System.out.println( c.getAllObjects() );
         
         
         

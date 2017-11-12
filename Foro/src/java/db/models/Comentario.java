@@ -15,23 +15,20 @@ import java.util.logging.Logger;
  *
  * @author augusto
  */
-public class Publicacion extends Model{
+public class Comentario extends Model{
+    //int id;
     private int usuario;
-    //private int id;
     private Date fecha;
     private String contenido;
-    private String topico;
-    
-    public Publicacion(){};
-    public Publicacion(int usuario,int id,Date fecha,String contenido,String topico){
-        this.usuario = usuario;
+    private int publicacion;
+    public Comentario(){}
+    public Comentario(int id, int usuario, Date fecha, String contenido,int publicacion){
         this.id = id;
+        this.usuario = usuario;
         this.fecha = fecha;
         this.contenido = contenido;
-        this.topico = topico;
+        this.publicacion = publicacion;
     }
-
-   
     @Override
     public Model save() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -39,8 +36,8 @@ public class Publicacion extends Model{
 
     @Override
     public ArrayList<Model> getObjects(String[][] atributo_valor) {
-        ArrayList<Model> pubs = new ArrayList<Model>();
-        String query = "SELECT * FROM Publicaciones WHERE ";
+        ArrayList<Model> comts = new ArrayList<Model>();
+        String query = "SELECT * FROM Comentarios WHERE ";
         for( int atributo = 0; atributo< atributo_valor.length; atributo++){
             query += atributo_valor[ atributo ][0] + "='";
             query += atributo_valor[ atributo ][1] + "' ";
@@ -50,56 +47,54 @@ public class Publicacion extends Model{
                 query += " OR ";
             }
         }
-        ResultSet publicaciones = this.connection.ejecutarConsulta(query);
+        ResultSet comentarios = this.connection.ejecutarConsulta(query);
+        
         try {
             // Recupera datos de cada fila
-            while( publicaciones.next()){
-                this.usuario = publicaciones.getInt("usuario");
-                this.id = publicaciones.getInt("id");
-                this.fecha = publicaciones.getDate("fecha");
-                this.contenido = publicaciones.getString("contenido");
-                this.topico = publicaciones.getString("topico");
-                pubs.add( new Publicacion(usuario, id, fecha, contenido, topico));
+            while( comentarios.next()){
+                this.usuario = comentarios.getInt("usuario");
+                this.fecha = comentarios.getDate("fecha");
+                this.contenido = comentarios.getString("contenido");
+                this.id = comentarios.getInt("id");
+                
+                
+                
+                comts.add( new Comentario(id, usuario, fecha, contenido, publicacion));
                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return pubs;
+        return comts;
     }
 
     @Override
     public ArrayList<Model> getAllObjects() {
-        ArrayList<Model> pubs = new ArrayList<Model>();
-        ResultSet publicaciones = this.connection.ejecutarConsulta("SELECT * FROM Publicaciones;");
+        ArrayList<Model> comts = new ArrayList<Model>();
+        ResultSet comentarios = this.connection.ejecutarConsulta("SELECT * FROM Comentarios;");
         
         try {
             // Recupera datos de cada fila
-            while( publicaciones.next()){
-                this.usuario = publicaciones.getInt("usuario");
-                this.id = publicaciones.getInt("id");
-                this.fecha = publicaciones.getDate("fecha");
-                this.contenido = publicaciones.getString("contenido");
-                this.topico = publicaciones.getString("topico");
-                pubs.add( new Publicacion(usuario, id, fecha, contenido, topico));
+            while( comentarios.next()){
+                this.usuario = comentarios.getInt("usuario");
+                this.fecha = comentarios.getDate("fecha");
+                this.contenido = comentarios.getString("contenido");
+                this.id = comentarios.getInt("id");
+                
+                
+                
+                comts.add( new Comentario(id, usuario, fecha, contenido, publicacion));
                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return pubs;
+        return comts;
     }
     
-    public String toString(){return this.topico;}
-     public int getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
-    }
+    public String toString(){ return this.contenido;}
 
     public int getId() {
         return id;
@@ -107,6 +102,14 @@ public class Publicacion extends Model{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
     }
 
     public Date getFecha() {
@@ -125,11 +128,12 @@ public class Publicacion extends Model{
         this.contenido = contenido;
     }
 
-    public String getTopico() {
-        return topico;
+    public int getPublicacion() {
+        return publicacion;
     }
 
-    public void setTopico(String topico) {
-        this.topico = topico;
+    public void setPublicacion(int publicacion) {
+        this.publicacion = publicacion;
     }
+    
 }
