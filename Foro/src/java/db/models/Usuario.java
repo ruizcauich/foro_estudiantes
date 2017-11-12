@@ -25,6 +25,8 @@ public class Usuario extends Model implements HtmlModel {
     private String email;
     private String avatar;
     private boolean esModerador; 
+
+  
     public Usuario( int id, String nombre, String apellidos, String
             institucion, String nickname, String contrasena, String
                     email, String avatar, boolean esModerador){
@@ -44,7 +46,39 @@ public class Usuario extends Model implements HtmlModel {
     
     @Override
     public Model save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String [][] atributos = {{"id",String.valueOf(id)},{"nombre",nombre}};
+        
+        
+        Usuario userAux =  new Usuario(id,nombre,apellidos,institucion,nickname,contrasena,email,avatar,esModerador);
+        
+        if(userAux.getObjects(atributos).isEmpty()){
+            String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
+                    + ",'"+contrasena+"','"+email+"','"+avatar+"','"+((esModerador)?'1':'0')+"');";
+            if(connection.ejecutarInstruccion(query)){
+                return this;
+            }
+            return null;
+        }
+        else{
+            String query = "UPDATE Usuarios SET"
+                    + " nombre = '"+nombre+"',"
+                    + " apellidos = '"+apellidos+"',"
+                    + " institucion = '"+institucion+"',"
+                    + " nickname = '"+nickname+"',"
+                    + " contrasena = '"+contrasena+"',"
+                    + " email = '"+email+"',"
+                    + " avatar = '"+avatar+"',"
+                    + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE id = '"+id+"';";
+            
+            System.out.println(query);
+            
+            if(connection.ejecutarInstruccion(query)){
+                return this;
+            }
+            return null;
+        }
+        
     }
 
     @Override
@@ -119,4 +153,69 @@ public class Usuario extends Model implements HtmlModel {
         return "<h1>" + nombre+ "</h1>";
     }
     public String toString(){ return nombre;} 
+    
+    
+      public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(String institucion) {
+        this.institucion = institucion;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public boolean isEsModerador() {
+        return esModerador;
+    }
+
+    public void setEsModerador(boolean esModerador) {
+        this.esModerador = esModerador;
+    }
 }
