@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class Publicacion extends Model{
     private int usuario;
-    private int id;
+    //private int id;
     private Date fecha;
     private String contenido;
     private String topico;
