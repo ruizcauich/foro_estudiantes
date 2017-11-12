@@ -147,6 +147,22 @@ public class Usuario extends Model implements HtmlModel {
         
         return usrs;
     }
+    
+    @Override
+    public boolean delete() {
+        try{
+            String query = "DELETE FROM Usuarios WHERE id = '"+id+"'";
+            if(connection.ejecutarInstruccion(query))
+            {
+                return true;
+            }
+            return false;
+        
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     @Override
     public String toHtml() {
@@ -154,7 +170,7 @@ public class Usuario extends Model implements HtmlModel {
     }
     public String toString(){ return nombre;} 
     
-    
+       
       public String getNombre() {
         return nombre;
     }

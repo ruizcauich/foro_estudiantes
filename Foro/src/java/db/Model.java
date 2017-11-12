@@ -18,6 +18,7 @@ public abstract  class Model {
     public abstract Model save();
     public abstract ArrayList<Model> getObjects(String[][] atributo_valor);
     public abstract ArrayList<Model> getAllObjects();
+    public abstract boolean delete();
     
     
     
