@@ -8,13 +8,12 @@
  *
  * @author augusto
  */
-import db.models.Usuario;
+import db.models.*;
 public class Tests {
     public static void main(String[] args){
-        Usuario us = new Usuario();
-        String [][] atributos = {{"nombre","eyden"},{"id", "1"}};
-        System.out.println( us.getObjects(atributos) );
-        System.out.println( us );
+        Publicacion p = new Publicacion();
+        
+        System.out.println( p.getObjects(new String[][]{{"topico","kjnkjnk"}}) );
         
     }
     
