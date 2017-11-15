@@ -55,8 +55,6 @@ public class Publicacion extends Model{
                   + " contenido = '"+contenido+"',"
                   + " topico = '"+topico+"' WHERE id = '"+id+"';";
         
-            System.out.println(query);
-            System.out.println(usuario);
             
             if(connection.ejecutarInstruccion(query)){
                 return this;

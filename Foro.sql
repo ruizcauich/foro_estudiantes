@@ -47,7 +47,7 @@ CREATE TABLE `Comentarios` (
 CREATE TABLE `Comentarios-Comentarios` (
   `id` int(11) NOT NULL,
   `comentarioPrincipal` int(11) NOT NULL,
-  `comentarioSeundario` int(11) NOT NULL
+  `comentarioSecundario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -108,7 +108,7 @@ ALTER TABLE `Comentarios`
 ALTER TABLE `Comentarios-Comentarios`
   ADD PRIMARY KEY (`id`),
   ADD KEY `comentarioPrincipal` (`comentarioPrincipal`),
-  ADD KEY `comentarioSecundario` (`comentarioSeundario`);
+  ADD KEY `comentarioSecundario` (`comentarioSecundario`);
 
 --
 -- Indexes for table `Publicaciones`
@@ -163,7 +163,7 @@ ALTER TABLE `Comentarios`
 --
 ALTER TABLE `Comentarios-Comentarios`
   ADD CONSTRAINT `Comentarios-Comentarios_ibfk_1` FOREIGN KEY (`comentarioPrincipal`) REFERENCES `Comentarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Comentarios-Comentarios_ibfk_2` FOREIGN KEY (`comentarioSeundario`) REFERENCES `Comentarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Comentarios-Comentarios_ibfk_2` FOREIGN KEY (`comentarioSecundario`) REFERENCES `Comentarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Publicaciones`

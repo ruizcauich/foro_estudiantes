@@ -31,7 +31,35 @@ public class Comentario extends Model{
     }
     @Override
     public Model save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String [][] atributos = {{"id",String.valueOf(id)}};
+        
+        Comentario coment = new Comentario(id,usuario,fecha,contenido,publicacion);
+        
+        if(coment.getObjects(atributos).isEmpty()){
+            String query = "INSERT INTO Comentarios VALUES(NULL,'"+usuario+"','"+fecha+"','"+contenido+"'"
+                    + ",'"+publicacion+"');";
+            if(connection.ejecutarInstruccion(query)){
+                return this;
+            }
+            else{
+                return null;
+            }
+        }
+        else{   
+            String query = "UPDATE Comentarios SET"
+                  + " usuario = '"+usuario+"',"
+                  + " fecha = '"+fecha+"',"
+                  + " contenido = '"+contenido+"',"
+                  + " publicacion = '"+publicacion+"' WHERE id = '"+id+"';";
+            
+            System.out.println(query);
+            
+            if(connection.ejecutarInstruccion(query)){
+                return this;
+            }
+            return null;
+        }
     }
 
     @Override
@@ -95,6 +123,24 @@ public class Comentario extends Model{
     }
     
     public String toString(){ return this.contenido;}
+    
+    
+    @Override
+    public boolean delete() {
+        try{
+            String query = "DELETE FROM Comentarios WHERE id = '"+id+"'";
+            if(connection.ejecutarInstruccion(query))
+            {
+                return true;
+            }
+            return false;
+        
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
 
     public int getId() {
         return id;
