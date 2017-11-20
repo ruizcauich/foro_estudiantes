@@ -41,16 +41,29 @@ public class Usuario extends Model implements HtmlModel {
         this.avatar = avatar;
         this.esModerador = esModerador;
     }
+    public Usuario( String nombre, String apellidos, String
+            institucion, String nickname, String contrasena, String
+                    email, String avatar, boolean esModerador){
+        
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.institucion = institucion;
+        this.nickname = nickname;
+        this.contrasena = contrasena;
+        this.email= email;
+        this.avatar = avatar;
+        this.esModerador = esModerador;
+    }
     
     public Usuario(){};
     
     @Override
     public Model save() {
         
-        String [][] atributos = {{"id",String.valueOf(id)},{"nombre",nombre}};
+        String [][] atributos = {{"nickname",nickname},{"nombre",nombre}};
         
         
-        Usuario userAux =  new Usuario(id,nombre,apellidos,institucion,nickname,contrasena,email,avatar,esModerador);
+        Usuario userAux =  new Usuario(nombre,apellidos,institucion,nickname,contrasena,email,avatar,esModerador);
         
         if(userAux.getObjects(atributos).isEmpty()){
             String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
@@ -69,7 +82,7 @@ public class Usuario extends Model implements HtmlModel {
                     + " contrasena = '"+contrasena+"',"
                     + " email = '"+email+"',"
                     + " avatar = '"+avatar+"',"
-                    + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE id = '"+id+"';";
+                    + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE nickname = '"+nickname+"';";
             
             System.out.println(query);
             

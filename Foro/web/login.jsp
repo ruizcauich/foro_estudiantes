@@ -1,3 +1,7 @@
+<%@ page import="db.models.Usuario" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="javax.servlet.http.Cookie" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,18 +36,52 @@
   <center>
     <img id='answer' src="img/gif2.gif">
   </center>
-  <form class="login_formulario" action="" method="post" border="1px">
+<%
+    String mensaje_contrasena="";
+    String mensaje_usuario="";
+    try{
+        String nickname = request.getParameter("usuario");
+        String contrasena =request.getParameter("contrasena");
+        if(nickname!=null){
+            Usuario us = new Usuario();
+            String atributo_valor[][] = {{"nickname", nickname}};
+            us = (Usuario) us.getObjects( atributo_valor).get(0);
 
+            if(contrasena.equals( us.getContrasena() )){
+                Cookie nickN = new Cookie("nickname", nickname);
+                Cookie psw = new Cookie("contrasena", contrasena);
+            
+                response.addCookie(nickN);
+                response.addCookie(psw);
+                
+                response.sendRedirect("/");
+            }
+            else{
+                mensaje_contrasena = "Contraseña erronea";
+
+            }
+        }
+        
+    }catch(IndexOutOfBoundsException e){
+        mensaje_usuario = "Usuario incorrecto";
+    }
+    
+%>
+  <form class="login_formulario" action="" method="post" border="1px">
+    <%out.print(mensaje_usuario); %>  
+    <br>
     <img class="login_iconos" src="img/icono-usuario.svg" alt="No se encontró la imagen" class="icono">
     <input type="text" id="usuario" class="campo" name="usuario" placeholder="Usuario">
-
+    <%out.print(mensaje_contrasena); %>  
+    <br>
     <img class="login_iconos" src="img/icono-contraseña.svg" alt="No se encontró la imagen" width=40px height=40px class="icono">
-    <input type="password" id="contraseña" class="campo" name="contraseÃ±a" placeholder="Contraseña">
+    <input type="password" id="contraseña" class="campo" name="contrasena" placeholder="Contraseña">
 
     <input class="btn grande block" type="submit" value="Ingrese">
 
-    <p>¿No tienes cuenta? <a href=""> Únete ahora</a></p>
+    <p>¿No tienes cuenta? <a href="registro.jsp"> Únete ahora</a></p>
 
   </form>
+    
 </body>
 </html>

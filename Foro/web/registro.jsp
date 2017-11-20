@@ -32,7 +32,7 @@
       </nav>
   </header>
   <h1 class="titulo_h1">¡Únete!</h1>
-  <form class="registro_formulario" action="" method="post">
+  <form class="registro_formulario" action="RealizarRegistro" method="post">
     <!--Nombre Apellidos InstituciÃ³n Nickname ContraseÃ±a Email -->
     <input type="text" class="campo" name="nombre" placeholder="Nombre(s)">
     <input type="text" class="campo" name="apellidos" placeholder="Apellidos">
