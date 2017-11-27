@@ -28,7 +28,17 @@ public class ComentarioToComentario extends Model {
     
     @Override
     public Model save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String query = "INSERT INTO `Comentarios-Comentarios` VALUES(NULL,'"+comentarioPrincipal+"'"
+               + ",'"+comentarioSecundario+"');";
+        if(connection.ejecutarInstruccion(query)){
+            return this;
+        }
+        else
+        {
+            return null;
+        }
+        
     }
 
     @Override
@@ -114,6 +124,23 @@ public class ComentarioToComentario extends Model {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean delete() {
+        try{
+            String query = "DELETE FROM `Comentarios-Comentarios` WHERE id = '"+id+"'";
+            
+            if(connection.ejecutarInstruccion(query))
+            {
+                return true;
+            }
+            return false;
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
     
     
