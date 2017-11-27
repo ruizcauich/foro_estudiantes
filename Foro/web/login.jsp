@@ -65,6 +65,7 @@
     }catch(IndexOutOfBoundsException e){
         mensaje_usuario = "Usuario incorrecto";
     }
+    catch(Exception e){}
     
 %>
   <form class="login_formulario" action="" method="post" border="1px">
