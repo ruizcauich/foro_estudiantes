@@ -37,8 +37,12 @@ public class ComentarioToComentario extends Model {
         else
         {
             return null;
-        }
-        
+        } 
+    }
+    
+    @Override
+    public boolean update(){
+        return false;
     }
 
     @Override

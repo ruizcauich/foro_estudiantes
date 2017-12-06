@@ -19,6 +19,7 @@ public abstract  class Model {
     public abstract ArrayList<Model> getObjects(String[][] atributo_valor);
     public abstract ArrayList<Model> getAllObjects();
     public abstract boolean delete();
+    public abstract boolean update();
     
     
     

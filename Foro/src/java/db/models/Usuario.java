@@ -59,39 +59,42 @@ public class Usuario extends Model implements HtmlModel {
     
     @Override
     public Model save() {
-        
-        String [][] atributos = {{"nickname",nickname},{"nombre",nombre}};
-        
-        
-        Usuario userAux =  new Usuario(nombre,apellidos,institucion,nickname,contrasena,email,avatar,esModerador);
-        
-        if(userAux.getObjects(atributos).isEmpty()){
+        try{
             String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
-                    + ",'"+contrasena+"','"+email+"','"+avatar+"','"+((esModerador)?'1':'0')+"');";
+                + ",'"+contrasena+"','"+email+"','"+avatar+"','"+((esModerador)?'1':'0')+"');";
+            
             if(connection.ejecutarInstruccion(query)){
                 return this;
             }
             return null;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
         }
-        else{
+    }
+    
+    @Override
+    public boolean update(){
+        try
+        { 
             String query = "UPDATE Usuarios SET"
-                    + " nombre = '"+nombre+"',"
-                    + " apellidos = '"+apellidos+"',"
-                    + " institucion = '"+institucion+"',"
-                    + " nickname = '"+nickname+"',"
-                    + " contrasena = '"+contrasena+"',"
-                    + " email = '"+email+"',"
-                    + " avatar = '"+avatar+"',"
-                    + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE nickname = '"+nickname+"';";
-            
-            System.out.println(query);
+                + " nombre = '"+nombre+"',"
+                + " apellidos = '"+apellidos+"',"
+                + " institucion = '"+institucion+"',"
+                + " nickname = '"+nickname+"',"
+                + " contrasena = '"+contrasena+"',"
+                + " email = '"+email+"',"
+                + " avatar = '"+avatar+"',"
+                + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE id = '"+id+"';";
             
             if(connection.ejecutarInstruccion(query)){
-                return this;
+                return true;
             }
-            return null;
+            return false;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
         }
-        
     }
 
     @Override
