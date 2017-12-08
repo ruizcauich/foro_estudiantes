@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="css/menus.css">
     <link rel="stylesheet" href="css/botones.css">
     <link rel="stylesheet" href="css/titulos.css">
+
+    <style media="screen">
+      #titulo-publicar{
+        width: 300px;
+        padding: 5px;
+        margin-bottom: 20px;
+      }
+    </style>
 </head>
 <body>
       <header>
@@ -27,12 +35,14 @@
   </header>
     <section class="contenedor">
        <div class="area-publicar">
-           <h3 class="titulo_h3">¿Buscas ayuda, opiniones o algo más?</h3>
+           <h3 class="titulo_h3">Buscas ayuda, opiniones o algo más?</h3>
            <p>
-               Escribe en la sección de abajo para poder har una publicación que cualquiera en este foro pueda ver.
+               Escribe en la sección de abajo para poder hacer una publicación que cualquiera en este foro pueda ver.
            </p>
-            <form action="#" class="publicar">
+            <form action="Publicar" class="publicar">
+                <input id="titulo-publicar" type="text" name="titulo" value=""placeholder="Titulo">
                 <textarea name="contenido" id="" cols="30" rows="10"></textarea>
+
                 <div>
                     <button type="submit" class="btn">Publicar</button>
                 </div>

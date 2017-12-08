@@ -36,13 +36,8 @@ public class Tests {
         us.update();
         
         */
-       
+ 
         
-        /*
-        Date fecha = new Date(10,10,10);
-        Comentario coment = new Comentario(1,fecha,"comentario",1);
-        coment.save();
-        */
     }
     
 }

@@ -63,9 +63,15 @@ public class Usuario extends Model implements HtmlModel {
             String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
                 + ",'"+contrasena+"','"+email+"','"+avatar+"','"+((esModerador)?'1':'0')+"');";
             
-            if(connection.ejecutarInstruccion(query)){
-                return this;
+            String [][] atributo_valor = {{"nickname",nickname}};
+            
+            
+            if(this.getObjects(atributo_valor).isEmpty()){
+                if(connection.ejecutarInstruccion(query)){
+                    return this;
+                }                
             }
+            
             return null;
         }catch(Exception e){
             e.printStackTrace();
@@ -87,9 +93,9 @@ public class Usuario extends Model implements HtmlModel {
                 + " avatar = '"+avatar+"',"
                 + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE id = '"+id+"';";
             
-            if(connection.ejecutarInstruccion(query)){
-                return true;
-            }
+                if(connection.ejecutarInstruccion(query)){
+                    return true;
+                }
             return false;
         }catch(Exception e){
             e.printStackTrace();
@@ -189,6 +195,10 @@ public class Usuario extends Model implements HtmlModel {
        
       public String getNombre() {
         return nombre;
+    }
+    
+    public int getId(){
+        return id;
     }
 
     public void setNombre(String nombre) {
