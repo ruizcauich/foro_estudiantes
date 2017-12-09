@@ -23,7 +23,9 @@ public class Conexion {
     
     private Connection con = null;
     private Statement st;
-    
+    public Connection getConnectionToDB(){
+        return con;
+    }
     public Conexion() {
          try{
             Class.forName("com.mysql.jdbc.Driver").newInstance( );

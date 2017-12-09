@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import html.HtmlModel;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.PreparedStatement;
 /**
  *
  * @author augusto
@@ -23,13 +27,13 @@ public class Usuario extends Model implements HtmlModel {
     private String nickname;
     private String contrasena;
     private String email;
-    private String avatar;
+    private InputStream avatar;
     private boolean esModerador; 
 
   
     public Usuario( int id, String nombre, String apellidos, String
             institucion, String nickname, String contrasena, String
-                    email, String avatar, boolean esModerador){
+                    email,InputStream avatar, boolean esModerador){
         
         this.id = id;
         this.nombre = nombre;
@@ -43,7 +47,7 @@ public class Usuario extends Model implements HtmlModel {
     }
     public Usuario( String nombre, String apellidos, String
             institucion, String nickname, String contrasena, String
-                    email, String avatar, boolean esModerador){
+                    email, boolean esModerador){
         
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -51,7 +55,7 @@ public class Usuario extends Model implements HtmlModel {
         this.nickname = nickname;
         this.contrasena = contrasena;
         this.email= email;
-        this.avatar = avatar;
+        
         this.esModerador = esModerador;
     }
     
@@ -63,11 +67,11 @@ public class Usuario extends Model implements HtmlModel {
         String [][] atributos = {{"nickname",nickname},{"nombre",nombre}};
         
         
-        Usuario userAux =  new Usuario(nombre,apellidos,institucion,nickname,contrasena,email,avatar,esModerador);
+        Usuario userAux =  new Usuario(nombre,apellidos,institucion,nickname,contrasena,email,esModerador);
         
         if(userAux.getObjects(atributos).isEmpty()){
             String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
-                    + ",'"+contrasena+"','"+email+"','"+avatar+"','"+((esModerador)?'1':'0')+"');";
+                    + ",'"+contrasena+"','"+email+"','NULL','"+((esModerador)?'1':'0')+"');";
             if(connection.ejecutarInstruccion(query)){
                 return this;
             }
@@ -81,7 +85,7 @@ public class Usuario extends Model implements HtmlModel {
                     + " nickname = '"+nickname+"',"
                     + " contrasena = '"+contrasena+"',"
                     + " email = '"+email+"',"
-                    + " avatar = '"+avatar+"',"
+                    + " avatar = 'NULL',"
                     + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE nickname = '"+nickname+"';";
             
             System.out.println(query);
@@ -118,7 +122,7 @@ public class Usuario extends Model implements HtmlModel {
                 this.nickname = usuarios.getString("nickname");
                 this.contrasena = usuarios.getString("contrasena");
                 this.email = usuarios.getString("email");
-                this.avatar = usuarios.getString("avatar");
+                this.avatar = usuarios.getBlob("avatar").getBinaryStream();
                 this.esModerador = usuarios.getBoolean("es_moderador");
                 usrs.add( new Usuario(id, nombre, apellidos, institucion,
                 nickname, contrasena, email, avatar, esModerador)
@@ -148,7 +152,7 @@ public class Usuario extends Model implements HtmlModel {
                 this.nickname = usuarios.getString("nickname");
                 this.contrasena = usuarios.getString("contrasena");
                 this.email = usuarios.getString("email");
-                this.avatar = usuarios.getString("avatar");
+                this.avatar = usuarios.getBlob("avatar").getBinaryStream();
                 this.esModerador = usuarios.getBoolean("es_moderador");
                 usrs.add( new Usuario(id, nombre, apellidos, institucion,
                 nickname, contrasena, email, avatar, esModerador)
@@ -175,6 +179,17 @@ public class Usuario extends Model implements HtmlModel {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    public boolean actualizarAvatar(InputStream avatar) throws SQLException{
+        
+        
+        String query = "Update Usuarios SET avatar = ?"+" WHERE id="+this.id;
+        PreparedStatement ps = connection.getConnectionToDB().prepareStatement(query);
+        ps.setBlob(1, avatar);
+        ps.executeUpdate();
+        
+        return false;
     }
 
     @Override
@@ -232,11 +247,24 @@ public class Usuario extends Model implements HtmlModel {
         this.email = email;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public InputStream getAvatar() throws SQLException {
+        /*String query = "SELECT avatar from Usuarios WHERE id="+this.id;
+        
+        ResultSet av = this.connection.ejecutarConsulta(query);
+        
+            while( av.next()){
+                return av.getBlob("avatar").getBinaryStream();
+            }
+            
+
+                    //return ava.getBinaryStream();
+        
+        return null;*/
+        return this.avatar;
+        
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(InputStream avatar) {
         this.avatar = avatar;
     }
 

@@ -4,22 +4,27 @@
  * and open the template in the editor.
  */
 
+import db.models.Usuario;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import db.models.Usuario;
-import javax.servlet.http.Cookie;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author augusto
  */
-@WebServlet(urlPatterns = {"/RealizarRegistro"})
-public class RealizarRegistro extends HttpServlet {
+@WebServlet(urlPatterns = {"/actualizarAvatar"})
+public class actualizarAvatar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,28 +37,34 @@ public class RealizarRegistro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("image/jpeg");
         try {
+//            PrintWriter out = response.getWriter();
             /* TODO output your page here. You may use following sample code. */
-            String nombre = request.getParameter("nombre");
-            String appellidos = request.getParameter("apellidos");
-            String inst = request.getParameter("institucion");
-            String email = request.getParameter("email");
-            String nickN = request.getParameter("nickname");
-            String contrs = request.getParameter("contraseña");
+            String id = request.getParameter("id");
+            Part avatar = request.getPart("avatar");
+            InputStream avatarFoto = avatar.getInputStream();
             
-            Usuario us = new Usuario(nombre, appellidos, inst, nickN, contrs, email, false);
-            us.save();
-            Cookie nickname = new Cookie("nickname", nickN);
-            Cookie contrasena = new Cookie("contrasena", contrs);
+            Usuario n = new Usuario();
+            String [][] atributo_valor = {{"id",id}};
+            n = (Usuario)n.getObjects(atributo_valor).get(0);
+            n.actualizarAvatar(avatarFoto);
             
-            response.addCookie(nickname);
-            response.addCookie(contrasena);
             
-            response.sendRedirect("index.jsp");
-        }catch(Exception e){
-            out.println("Algo salio mal");
+            byte buff [] = new byte[16777215];
+            //n.getAvatar().read(buff);
+            
+            
+            ServletOutputStream o = response.getOutputStream();
+            int tamano = 0;
+            
+            
+            while( (tamano=avatarFoto.read(buff))>=0){
+                o.write(buff, 0, tamano);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 

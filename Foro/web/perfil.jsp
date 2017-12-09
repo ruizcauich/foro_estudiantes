@@ -1,3 +1,12 @@
+<%@ page import="db.models.Usuario" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="javax.servlet.http.Cookie" %>
+<%@ page import="html.ControlSeguridad" %>
+<%
+    if( !ControlSeguridad.estaAutenticado(request) ) response.sendRedirect("login.jsp");
+    
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +19,8 @@
   <link rel="stylesheet" href="css/menus.css">
   <link rel="stylesheet" href="css/botones.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <script src="js/ajax.js"></script>
+  <script src="js/perfil.js"></script>
   <title>Perfil</title>
 </head>
 <body>
@@ -31,13 +42,15 @@
   </header>
   <div class="contenedor-perfil">
     <div class="contenedor-avatar">
-      <img src="img/default-avatar.png" alt="No se pudo cargar la imagen">
-      <form class="formulario-avatar" action="index.html" method="post">
-        <input class="btn" type="submit" name="" value="Cambiar Avatar">
-      </form>
+      <img id="avatar"  src="img/default-avatar.png" alt="No se pudo cargar la imagen">
+      <form class="formulario-avatar" action="actualizarAvatar" enctype="multipart/form-data">
+        <input id="cambiar_avatar" class="btn" hidden type="file" name="avatar" value="Elije una imagen"  >
+        <input id="sumbit_avatar" class="btn" type="submit" value="Seleccionar avatar">
+              </form>
     </div>
     <div class="contenedor-datos">
       <form class="formulario-perfil-datos" action="index.html" method="post">
+          <input type="hidden" id="id" value="1" name="id">
         <div class="contenedor-campo">
           <label for="nombre">Nombre</label>
           <input type="text" name="nombre" value="Andres">
