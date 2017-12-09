@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
  *
  * @author augusto
  */
-public class Usuario extends Model implements HtmlModel {
+public class Usuario extends Model {
     
     private String nombre;
     private String apellidos;
@@ -64,19 +64,19 @@ public class Usuario extends Model implements HtmlModel {
     @Override
     public Model save() {
         
-        String [][] atributos = {{"nickname",nickname},{"nombre",nombre}};
+        String [][] atributos = {{"nickname",nickname}};
         
         Usuario userAux =  new Usuario(nombre,apellidos,institucion,nickname,contrasena,email,esModerador);
         
-        if(userAux.getObjects(atributos).isEmpty()){
-        try{
         
-            String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
-                    + ",'"+contrasena+"','"+email+"','NULL','"+((esModerador)?'1':'0')+"');";
-            if(connection.ejecutarInstruccion(query)){
-                return this;
+        try{
+            if(userAux.getObjects(atributos).isEmpty()){
+                String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
+                        + ",'"+contrasena+"','"+email+"','NULL','"+((esModerador)?'1':'0')+"');";
+                if(connection.ejecutarInstruccion(query)){
+                    return this;
+                }
             }
-            
             return null;
         }catch(Exception e){
             e.printStackTrace();
@@ -202,10 +202,7 @@ public class Usuario extends Model implements HtmlModel {
         return false;
     }
 
-    @Override
-    public String toHtml() {
-        return "<h1>" + nombre+ "</h1>";
-    }
+    
     public String toString(){ return nombre;} 
     
        
@@ -289,4 +286,5 @@ public class Usuario extends Model implements HtmlModel {
     public void setEsModerador(boolean esModerador) {
         this.esModerador = esModerador;
     }
+
 }
