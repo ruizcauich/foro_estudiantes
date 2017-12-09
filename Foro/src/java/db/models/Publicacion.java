@@ -30,37 +30,52 @@ public class Publicacion extends Model{
         this.contenido = contenido;
         this.topico = topico;
     }
+    
+    public Publicacion(int usuario, Date fecha, String contenido, String topico){
+        this.usuario = usuario;
+        this.fecha = fecha;
+        this.contenido = contenido;
+        this.topico = topico;
+    
+    }
 
    
     @Override
     public Model save() {
-        
-        String [][] atributos = {{"id",String.valueOf(id)},{"topico",topico}};
-        
-        Publicacion pubAux = new Publicacion(usuario,id,fecha,contenido,topico);
-        
-        if(pubAux.getObjects(atributos).isEmpty()){
+        try{
             String query = "INSERT INTO Publicaciones VALUES('"+usuario+"',NULL,'"+fecha+"','"+contenido+"'"
-                    + ",'"+topico+"');";
+                + ",'"+topico+"');";
+               
             if(connection.ejecutarInstruccion(query)){
                 return this;
             }
+               
+            return null;
+        }catch(Exception e){
+            e.printStackTrace();
             return null;
         }
-        else{
-            
+    }
+    
+    
+    @Override
+    public boolean update() {
+      try{
+          
             String query = "UPDATE Publicaciones SET"
                   + " usuario = '"+usuario+"',"
                   + " fecha = '"+fecha+"',"
                   + " contenido = '"+contenido+"',"
                   + " topico = '"+topico+"' WHERE id = '"+id+"';";
-        
             
             if(connection.ejecutarInstruccion(query)){
-                return this;
+                return true;
             }
-            return null;
-        }
+            return false;
+      }catch(Exception e){
+          e.printStackTrace();
+          return false;
+      }
     }
 
     @Override
@@ -174,6 +189,7 @@ public class Publicacion extends Model{
     public void setTopico(String topico) {
         this.topico = topico;
     }
+
 
 
 }

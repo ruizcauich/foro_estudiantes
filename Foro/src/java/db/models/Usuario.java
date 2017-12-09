@@ -66,18 +66,28 @@ public class Usuario extends Model implements HtmlModel {
         
         String [][] atributos = {{"nickname",nickname},{"nombre",nombre}};
         
-        
         Usuario userAux =  new Usuario(nombre,apellidos,institucion,nickname,contrasena,email,esModerador);
         
         if(userAux.getObjects(atributos).isEmpty()){
+        try{
+        
             String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
                     + ",'"+contrasena+"','"+email+"','NULL','"+((esModerador)?'1':'0')+"');";
             if(connection.ejecutarInstruccion(query)){
                 return this;
             }
+            
+            return null;
+        }catch(Exception e){
+            e.printStackTrace();
             return null;
         }
-        else{
+    }
+    
+    @Override
+    public boolean update(){
+        try
+        { 
             String query = "UPDATE Usuarios SET"
                     + " nombre = '"+nombre+"',"
                     + " apellidos = '"+apellidos+"',"
@@ -88,14 +98,14 @@ public class Usuario extends Model implements HtmlModel {
                     + " avatar = 'NULL',"
                     + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE nickname = '"+nickname+"';";
             
-            System.out.println(query);
-            
-            if(connection.ejecutarInstruccion(query)){
-                return this;
-            }
-            return null;
+                if(connection.ejecutarInstruccion(query)){
+                    return true;
+                }
+            return false;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
         }
-        
     }
 
     @Override
@@ -201,6 +211,10 @@ public class Usuario extends Model implements HtmlModel {
        
       public String getNombre() {
         return nombre;
+    }
+    
+    public int getId(){
+        return id;
     }
 
     public void setNombre(String nombre) {

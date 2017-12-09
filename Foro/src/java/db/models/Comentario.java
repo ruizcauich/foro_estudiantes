@@ -29,37 +29,48 @@ public class Comentario extends Model{
         this.contenido = contenido;
         this.publicacion = publicacion;
     }
+    
+    public Comentario(int usuario, Date fecha, String contenido,int publicacion){
+        this.usuario = usuario;
+        this.fecha = fecha;
+        this.contenido = contenido;
+        this.publicacion = publicacion;
+    }
+    
     @Override
     public Model save() {
-        
-        String [][] atributos = {{"id",String.valueOf(id)}};
-        
-        Comentario coment = new Comentario(id,usuario,fecha,contenido,publicacion);
-        
-        if(coment.getObjects(atributos).isEmpty()){
+        try{
             String query = "INSERT INTO Comentarios VALUES(NULL,'"+usuario+"','"+fecha+"','"+contenido+"'"
-                    + ",'"+publicacion+"');";
-            if(connection.ejecutarInstruccion(query)){
-                return this;
-            }
-            else{
-                return null;
-            }
-        }
-        else{   
-            String query = "UPDATE Comentarios SET"
-                  + " usuario = '"+usuario+"',"
-                  + " fecha = '"+fecha+"',"
-                  + " contenido = '"+contenido+"',"
-                  + " publicacion = '"+publicacion+"' WHERE id = '"+id+"';";
-            
-            System.out.println(query);
-            
+                + ",'"+publicacion+"');";
             if(connection.ejecutarInstruccion(query)){
                 return this;
             }
             return null;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
         }
+    }
+    
+    @Override
+    public boolean update() {
+       try
+       {
+            String query = "UPDATE Comentarios SET"
+                + " fecha = '"+fecha+"',"
+                + " contenido = '"+contenido+""
+                + "' WHERE id = '"+id+"';";
+            
+            System.out.println(query);
+            
+            if(connection.ejecutarInstruccion(query)){
+                return true;
+            }
+            return false;
+       }catch(Exception e){
+           e.printStackTrace();
+           return false;
+       }
     }
 
     @Override
@@ -181,5 +192,7 @@ public class Comentario extends Model{
     public void setPublicacion(int publicacion) {
         this.publicacion = publicacion;
     }
+
+
     
 }
