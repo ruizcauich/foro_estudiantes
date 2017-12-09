@@ -99,6 +99,7 @@ public class Usuario extends Model {
                     + " es_moderador = '"+((esModerador)?'1':'0')+"' WHERE nickname = '"+nickname+"';";
             
                 if(connection.ejecutarInstruccion(query)){
+                    this.actualizarAvatar(avatar);
                     return true;
                 }
             return false;

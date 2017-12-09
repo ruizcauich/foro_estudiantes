@@ -3,7 +3,25 @@
 <%@ page import="javax.servlet.http.Cookie" %>
 <%@ page import="html.ControlSeguridad" %>
 <%
-    if( !ControlSeguridad.estaAutenticado(request) ) response.sendRedirect("login.jsp");
+    if( !ControlSeguridad.estaAutenticado(request) ){
+        response.sendRedirect("login.jsp");
+        return;
+    }
+    
+    Usuario us = ControlSeguridad.obtenerUsuarioEnSesion(request);
+    
+        if( request.getParameter("id")!=null){
+            us.setNombre( request.getParameter("nombre"));
+            us.setApellidos( request.getParameter("apellidos") );
+            us.setInstitucion( request.getParameter("institucion") );
+            us.setNickname( request.getParameter("nickname") );
+            us.setEmail( request.getParameter("email") );
+            us.setContrasena( request.getParameter("contrasena") );
+
+            us.update();
+        }
+        
+    
     
 %>
 
@@ -42,38 +60,38 @@
   </header>
   <div class="contenedor-perfil">
     <div class="contenedor-avatar">
-      <img id="avatar"  src="img/default-avatar.png" alt="No se pudo cargar la imagen">
+      <img id="avatar"  src="obtenerAvatar?id=<%=us.getId()%>" alt="No se pudo cargar la imagen">
       <form class="formulario-avatar" action="actualizarAvatar" enctype="multipart/form-data">
         <input id="cambiar_avatar" class="btn" hidden type="file" name="avatar" value="Elije una imagen"  >
         <input id="sumbit_avatar" class="btn" type="submit" value="Seleccionar avatar">
               </form>
     </div>
     <div class="contenedor-datos">
-      <form class="formulario-perfil-datos" action="index.html" method="post">
-          <input type="hidden" id="id" value="1" name="id">
+      <form class="formulario-perfil-datos" action="" method="post">
+          <input type="hidden" id="id" value="<%=us.getId()%>" name="id">
         <div class="contenedor-campo">
           <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" value="Andres">
+          <input type="text" name="nombre" value="<%=us.getNombre()%>">
         </div>
         <div class="contenedor-campo">
           <label for="apellidos">Apellidos</label>
-          <input type="text" name="apellidos" value="Ancala Montalvo">
+          <input type="text" name="apellidos" value="<%=us.getApellidos()%>">
         </div>
         <div class="contenedor-campo">
           <label for="institucion">Institución</label>
-          <input type="text" name="institucion" value="UNAM">
+          <input type="text" name="institucion" value="<%=us.getInstitucion()%>">
         </div>
         <div class="contenedor-campo">
           <label for="nickname">Nickname</label>
-          <input type="text" name="nickname" value="Andres Patricio">
+          <input type="text" name="nickname" value="<%=us.getNickname()%>">
         </div>
         <div class="contenedor-campo">
           <label for="email">Email</label>
-          <input type="text" name="email" value="Andres@gmail.com">
+          <input type="text" name="email" value="<%=us.getEmail()%>">
         </div>
         <div class="contenedor-campo">
           <label for="contraseña">Contraseña</label>
-          <input type="password" name="contraseña" value="contraseñadeAndres">
+          <input type="password" name="contrasena" value="<%=us.getContrasena()%>">
         </div>
         <div class="contenedor-campo">
           <label for="boton">Guarda tus Cambios</label>

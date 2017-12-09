@@ -41,4 +41,25 @@ public class ControlSeguridad {
         
         return false;
     }
+    
+    public static Usuario obtenerUsuarioEnSesion(HttpServletRequest request){
+        try{
+            Cookie cookies[] = request.getCookies();
+            String nickname = "";
+            
+            for(int i=0; i<cookies.length; i++ ){
+                if(cookies[i].getName().equals("nickname")){
+                    nickname = cookies[i].getValue();
+                    continue;
+                }
+            }
+            Usuario us = new Usuario();
+            String a[][] = {{"nickname",nickname}};
+            us = (Usuario) us.getObjects(a).get(0);
+            
+            return us;
+        }catch(Exception e){ }
+        
+        return null;
+    }
 }
