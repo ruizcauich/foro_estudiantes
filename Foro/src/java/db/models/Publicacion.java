@@ -112,8 +112,8 @@ public class Publicacion extends Model{
 
     @Override
     public ArrayList<Model> getAllObjects() {
-        ArrayList<Model> pubs = new ArrayList<Model>();
-        ResultSet publicaciones = this.connection.ejecutarConsulta("SELECT * FROM Publicaciones;");
+        ArrayList<Model> pubs = new ArrayList<Model>();            
+        ResultSet publicaciones = this.connection.ejecutarConsulta("SELECT * FROM Publicaciones ORDER By fecha DESC;");
         
         try {
             // Recupera datos de cada fila

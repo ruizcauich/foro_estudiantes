@@ -1,8 +1,8 @@
-<%-- 
+<%--
  * Nombre del archivo: index.jsp
  * Descripción: Página principal del sistema
  *
- * Autor (es): Dindier Alexander Pot Mukul, Augusto Neftalí Ruiz Cauich, Eyden Villanueva Alpuche
+ * Autor (es): Dindier Alexander Pot Mukul, Augusto Neftalí­ Ruiz Cauich, Eyden Villanueva Alpuche
  * Fecha de realización: 11-Noviembre-2017, 10-Diciembre-2017
  --%>
 <!DOCTYPE html>
@@ -13,7 +13,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="img/logo-favicon.ico">
     <link rel="stylesheet" href="css/contenedores.css">
     <link rel="stylesheet" href="css/menus.css">
+    <link rel="stylesheet" href="css/botones.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="js/publicacionesRecientes.js"></script>
+    <script src="js/ajax.js"></script>
 </head>
 <body>
     <header>
@@ -108,7 +111,9 @@
             </div>
         </article>
         </a>
+           <input id="mostrar_mas" type="button" class="btn" value="Mostrar más">
        </div>
+        
         <aside id="navegacion-lateral">
             <div class="resumen-usuario">
                <span class="avatar"><img src="img/default-avatar.png" alt=""></span>
@@ -130,10 +135,11 @@
                 </div>
             </div>
         </aside>
+        
     </section>
-    
+
     <footer>
-       
+
     </footer>
 
 </body>
