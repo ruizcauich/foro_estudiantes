@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Nombre del archivo: obtenerAvatar.java
+ * Descripción: Recibe un id de un usuario para regresar la imagen
+ *              
+ * Autor (es): Augusto Neftalí Ruiz Cauich
+ * Fecha de realización: 06-Diciembre-2017
  */
 
 import db.models.Usuario;
@@ -42,37 +44,22 @@ public class obtenerAvatar extends HttpServlet {
             throws ServletException, IOException {
         
         try  {
-            /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
             
+            String id = request.getParameter("id");
             
             Usuario n = new Usuario();
             String [][] atributo_valor = {{"id",id}};
             n = (Usuario)n.getObjects(atributo_valor).get(0);
             
             
-            
             response.reset();
-            //response.setContentType("image/png");
+            
             ServletContext sc = getServletContext();
             response.setContentType(sc.getMimeType("h.jpg"));
             response.addHeader("Content-Disposition","filename=avatar.jpg");
             
             ServletOutputStream o = response.getOutputStream();
-            /*
-            BufferedInputStream bin = new BufferedInputStream(n.getAvatar());  
-            BufferedOutputStream bout = new BufferedOutputStream(o); 
-
-            int ch=0;   
-            while((ch=bin.read())!=-1)  
-            {  
-                bout.write(ch);  
-            }  
-            if(bin!=null)bin.close();  
             
-            if(bout!=null)bout.close();  
-            
-            */
             int tamano = 0;
             byte buff [] = new byte[16777215];
             while( (tamano=n.getAvatar().read(buff))>=0){

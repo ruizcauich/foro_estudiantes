@@ -1,3 +1,10 @@
+<%-- 
+ * Nombre del archivo: perfil.jsp
+ * Descripción: Muestrar un formulario al usuario para que pesda
+ *               realizar una publicación
+ * Autor (es): Augusto Neftalí Ruiz Cauich, Eyden Villanueva Alpuche
+ * Fecha de realización: 11-Noviembre-2017
+ --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

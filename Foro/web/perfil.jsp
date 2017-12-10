@@ -1,8 +1,16 @@
+<%-- 
+ * Nombre del archivo: perfil.jsp
+ * Descripción: Muestrar un formulario al usuario para que pesda
+ *               realizar una publicación
+ * Autor (es): Augusto Neftalí Ruiz Cauich, Eyden Villanueva Alpuche
+ * Fecha de realización: 11-Noviembre-2017
+ --%>
 <%@ page import="db.models.Usuario" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.servlet.http.Cookie" %>
 <%@ page import="html.ControlSeguridad" %>
 <%
+    
     if( !ControlSeguridad.estaAutenticado(request) ){
         response.sendRedirect("login.jsp");
         return;

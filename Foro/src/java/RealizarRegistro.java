@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Nombre del archivo: RealizarRegistro.java
+ * Descripción: Guarda en la base de datos, la información de un usuario
+ *              que se esta registrando
+ * Autor (es): Augusto Neftalí Ruiz Cauich, Eyden Villanueva Alpuche
+ * Fecha de realización: 20-Noviembre-2017
  */
 
 import java.io.IOException;

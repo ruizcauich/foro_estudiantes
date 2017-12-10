@@ -1,3 +1,11 @@
+<%--/*
+ * Nombre del archivo: publicar.jsp
+ * Descripción: Muestra formulario para hacer una publicación
+ *              
+ * Autor (es): Dindier Alexander, Eyden Villanueva
+ * Fecha de realización: 20-Noviembre-2017, 03-Diciembre-2017
+ */
+ --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

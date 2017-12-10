@@ -1,3 +1,10 @@
+<%-- 
+ * Nombre del archivo: login.jsp
+ * Descripción: Para el inicio de sesión
+ *               
+ * Autor (es): Augusto Neftalí Ruiz Cauich, Eyden Villanueva Alpuche
+ * Fecha de realización: 11-Noviembre-2017
+ --%>
 <%@ page import="db.models.Usuario" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.servlet.http.Cookie" %>
@@ -42,15 +49,17 @@
     try{
         String nickname = request.getParameter("usuario");
         String contrasena =request.getParameter("contrasena");
+        // Para iniciar sesión
         if(nickname!=null){
+            // Obtener usuario de la base de datos
             Usuario us = new Usuario();
             String atributo_valor[][] = {{"nickname", nickname}};
             us = (Usuario) us.getObjects( atributo_valor).get(0);
-
+            // Verificar contraseña
             if(contrasena.equals( us.getContrasena() )){
                 Cookie nickN = new Cookie("nickname", nickname);
                 Cookie psw = new Cookie("contrasena", contrasena);
-            
+                // agregar esto a las cookies
                 response.addCookie(nickN);
                 response.addCookie(psw);
                 

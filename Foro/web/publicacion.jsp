@@ -1,3 +1,11 @@
+<%--/*
+ * Nombre del archivo: publicar.jsp
+ * Descripción: Muestra una publicación
+ *              
+ * Autor (es): Eyden Villanueva
+ * Fecha de realización: 11-Noviembre-2017
+ */
+ --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

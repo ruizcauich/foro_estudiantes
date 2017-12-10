@@ -1,4 +1,10 @@
-
+<%-- 
+ * Nombre del archivo: index.jsp
+ * Descripción: Página principal del sistema
+ *
+ * Autor (es): Dindier Alexander Pot Mukul, Augusto Neftalí Ruiz Cauich, Eyden Villanueva Alpuche
+ * Fecha de realización: 11-Noviembre-2017, 10-Diciembre-2017
+ --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
