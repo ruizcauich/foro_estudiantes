@@ -5,6 +5,9 @@
  * Autor (es): Augusto Neftalí Ruiz Cauich, Eyden Villanueva Alpuche
  * Fecha de realización: 11-Noviembre-2017
  --%>
+ <%@ page import="html.Header" %>
+<%@ page import="html.ControlSeguridad" %>
+<% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +24,7 @@
   <link rel="stylesheet" href="css/titulos.css">
 </head>
 <body>
-  <header>
+  <%--<header>
       <nav>
           <div class="contenedor">
             <a href="index.jsp"><img id="logo" src="img/gif2.gif"></a>
@@ -37,7 +40,8 @@
               </ul>
           </div>
       </nav>
-  </header>
+  </header>--%>
+  <%=head.toHtml()%>
   <h1 class="titulo_h1">¡Únete!</h1>
   <form class="registro_formulario" action="RealizarRegistro" method="post">
     <!--Nombre Apellidos InstituciÃ³n Nickname ContraseÃ±a Email -->

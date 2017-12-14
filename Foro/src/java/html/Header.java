@@ -5,15 +5,42 @@
  */
 package html;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author augusto
  */
 public class Header implements HtmlModel {
-
+    boolean estaAutenticado;
+    public Header( boolean estaAutenticado ){
+        this.estaAutenticado = estaAutenticado;
+    }
     @Override
     public String toHtml() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String headerMenu = " <header>\n" +
+"        <nav>\n" +
+"            <div class=\"contenedor\">\n" +
+"              <a href=\"index.html\"><img id=\"logo\" src=\"img/gif2.gif\"></a>\n" +
+"               <div class=\"busqueda\">\n" +
+"                   <form action=\"#\">\n" +
+"                       <input type=\"text\" name=\"buscar\">\n" +
+"                       <button  class=\"boton\" type=\"submit\">Buscar</button>\n" +
+"                   </form>\n" +
+"               </div>\n" +
+"                <ul class=\"menu\">\n" +
+"                    <li><a href=\"/\">Inicio</a></li>\n" +
+"                    <li><a href=\"perfil.jsp\">Perfil</a></li>\n" +
+                ((!estaAutenticado)?
+"                    <li><a href=\"login.jsp\">Login</a></li>\n":"<li><a href=\"publicar.jsp\">Publicar Post</a></li>\n") +
+               ((!estaAutenticado)?
+"                    <li><a href=\"registro.jsp\">Registrar</a></li>\n":"") +
+"                </ul>\n" +
+"            </div>\n" +
+"        </nav>\n" +
+"    </header>";
+        
+        return headerMenu;
     }
     
 }

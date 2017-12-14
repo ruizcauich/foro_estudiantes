@@ -8,6 +8,9 @@
 <%@ page import="db.models.Usuario" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.servlet.http.Cookie" %>
+<%@ page import="html.Header" %>
+<%@ page import="html.ControlSeguridad" %>
+<% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +26,8 @@
   <link rel="stylesheet" href="css/botones.css">
 </head>
 <body>
-  <header>
+    <%=head.toHtml()%>
+  <%--<header>
       <nav>
           <div class="contenedor">
             <a href="index.jsp"><img id="logo" src="img/gif2.gif"></a>
@@ -39,7 +43,7 @@
               </ul>
           </div>
       </nav>
-  </header>
+  </header>--%>
   <center>
     <img id='answer' src="img/gif2.gif">
   </center>

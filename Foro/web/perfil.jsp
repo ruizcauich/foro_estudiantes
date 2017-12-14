@@ -8,7 +8,9 @@
 <%@ page import="db.models.Usuario" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.servlet.http.Cookie" %>
+<%@ page import="html.Header" %>
 <%@ page import="html.ControlSeguridad" %>
+<% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
 <%
     
     if( !ControlSeguridad.estaAutenticado(request) ){
@@ -50,7 +52,7 @@
   <title>Perfil</title>
 </head>
 <body>
-  <header>
+  <%--<header>
       <nav>
           <div class="contenedor">
             <a href="index.jsp"><img id="logo" src="img/gif2.gif"></a>
@@ -65,7 +67,8 @@
               </ul>
           </div>
       </nav>
-  </header>
+  </header>--%>
+  <%=head.toHtml()%>
   <div class="contenedor-perfil">
     <div class="contenedor-avatar">
       <img id="avatar"  src="obtenerAvatar?id=<%=us.getId()%>" alt="No se pudo cargar la imagen">

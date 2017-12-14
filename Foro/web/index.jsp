@@ -5,7 +5,10 @@
  * Autor (es): Dindier Alexander Pot Mukul, Augusto Neftalí­ Ruiz Cauich, Eyden Villanueva Alpuche
  * Fecha de realización: 11-Noviembre-2017, 10-Diciembre-2017
  --%>
-<!DOCTYPE html>
+<%@ page import="html.Header" %>
+<%@ page import="html.ControlSeguridad" %>
+<% Header head = new Header( ControlSeguridad.estaAutenticado(request) );%>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,24 +22,7 @@
     <script src="js/ajax.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="contenedor">
-              <a href="index.html"><img id="logo" src="img/gif2.gif"></a>
-               <div class="busqueda">
-                   <form action="#">
-                       <input type="text" name="buscar">
-                       <button  class="boton" type="submit">Buscar</button>
-                   </form>
-               </div>
-                <ul class="menu">
-                    <li><a href="perfil.jsp">Perfil</a></li>
-                    <li><a href="login.jsp">Login</a></li>
-                    <li><a href="registro.jsp">Registrar</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <%=head.toHtml()%>
     <section class="contenedor">
        <div class="contenedor-contenido">
         <a href="">

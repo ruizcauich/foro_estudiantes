@@ -1,3 +1,6 @@
+<%@ page import="html.Header" %>
+<%@ page import="html.ControlSeguridad" %>
+<% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <%--<header>
         <nav>
             <div class="contenedor">
               <a href="index.jsp"><img id="logo" src="img/gif2.gif"></a>
@@ -27,7 +30,8 @@
                 </ul>
             </div>
         </nav>
-    </header>
+    </header>--%>
+    <%=head.toHtml()%>
     <section class="contenedor">
      <br>
       <h2 class="titulo_h2">

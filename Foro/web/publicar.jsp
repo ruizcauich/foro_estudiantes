@@ -6,6 +6,9 @@
  * Fecha de realización: 20-Noviembre-2017, 03-Diciembre-2017
  */
  --%>
+ <%@ page import="html.Header" %>
+<%@ page import="html.ControlSeguridad" %>
+<% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +28,7 @@
     </style>
 </head>
 <body>
-      <header>
+      <%--<header>
       <nav>
           <div class="contenedor">
             <a href="index.jsp"><img id="logo" src="img/gif2.gif"></a>
@@ -40,7 +43,8 @@
               </ul>
           </div>
       </nav>
-  </header>
+  </header>--%>
+    <%=head.toHtml()%>
     <section class="contenedor">
        <div class="area-publicar">
            <h3 class="titulo_h3">Buscas ayuda, opiniones o algo más?</h3>

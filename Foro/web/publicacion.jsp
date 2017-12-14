@@ -1,3 +1,6 @@
+<%@ page import="html.Header" %>
+<%@ page import="html.ControlSeguridad" %>
+<% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
 <%--/*
  * Nombre del archivo: publicar.jsp
  * Descripción: Muestra una publicación
@@ -23,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <%--<header>
       <nav>
           <div class="contenedor">
             <a href="index.jsp"><img id="logo" src="img/gif2.gif"></a>
@@ -40,7 +43,8 @@
               </ul>
           </div>
       </nav>
-  </header>
+  </header>--%>
+  <%=head.toHtml()%>
   <section class="publicacion">
     <h1 class="titulo_h1">Publicación</h1>
     <div class="fondo-publicacion">
