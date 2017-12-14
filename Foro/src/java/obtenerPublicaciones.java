@@ -61,7 +61,7 @@ public class obtenerPublicaciones extends HttpServlet {
                             
                 }
                 String link_pub = 
-"        <a href=\"\">\n" +
+"        <a href=\"http://localhost:8084/publicacion.jsp?publicacion="+ pub.getId()+"\">\n" +
 "            <article class=\"publicacion-link\">\n" +
 "           <div class=\"avatar\">\n" +
 "                <img src=\"obtenerAvatar?id="+us.getId()+"\" alt=\"\">\n" +

@@ -1,3 +1,4 @@
+<%@page import="db.models.Publicacion"%>
 <%@ page import="html.Header" %>
 <%@ page import="html.ControlSeguridad" %>
 <% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
@@ -26,43 +27,21 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-  <%--<header>
-      <nav>
-          <div class="contenedor">
-            <a href="index.jsp"><img id="logo" src="img/gif2.gif"></a>
-             <div class="busqueda">
-                 <form action="#">
-                     <input type="text" name="buscar">
-                     <button  class="boton" type="submit">Buscar</button>
-                 </form>
-             </div>
-              <ul class="menu">
-                  <li><a href="perfil.jsp">Perfil</a></li>
-                  <li><a href="login.jsp">Login</a></li>
-                  <li><a href="registro.jsp">Registrar</a></li>
-              </ul>
-          </div>
-      </nav>
-  </header>--%>
   <%=head.toHtml()%>
+  <%  
+      
+      Publicacion publicacion = new Publicacion();
+      int id = Integer.parseInt(request.getParameter("publicacion"));
+      String atributo_valor [][] = {{"id",String.valueOf(id)}};
+      publicacion = (Publicacion)publicacion.getObjects(atributo_valor).get(0);
+  
+  
+  %>
   <section class="publicacion">
-    <h1 class="titulo_h1">Publicación</h1>
+    <h1 class="titulo_h1"><%out.print(publicacion.getTopico()); %> </h1>
     <div class="fondo-publicacion">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab modi soluta quas vel voluptates ex saepe sit a dolorem. Quae ratione repudiandae ipsam consequuntur, suscipit nostrum in sapiente, nesciunt debitis
-      Hic inventore quis aspernatur doloremque omnis blanditiis cupiditate ex, labore dolore magnam sapiente. At ea nemo nisi facilis eaque, exercitationem explicabo quaerat ab quo aperiam dolor eveniet voluptatem facere molestias.
-      Consequatur totam id ab dolorem impedit, voluptas nihil inventore reprehenderit ex optio, sequi rem corporis vitae delectus illo fugit qui ipsa harum. Quia, mollitia, amet? Praesentium dolorem illum ab maiores.
-      Facilis dignissimos nam totam! Modi tempora eveniet asperiores quaerat esse dignissimos consequuntur eum fuga error corporis, quas facere, voluptatem eaque molestiae neque ipsa dolores dolorem, architecto accusantium optio id sed!
-      Sunt in at nihil tempora pariatur neque odio enim, iste itaque, sint sequi? Alias magnam quibusdam illum repudiandae vel ut vitae, maxime, illo possimus maiores praesentium, tenetur ad atque repellat
-      </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores obcaecati excepturi debitis, assumenda. Voluptas, odit, tenetur. Voluptas officiis non dolorem!
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ab consectetur sapiente officia, at nam quaerat maxime quae amet autem. Quo delectus expedita dignissimos obcaecati cum, est itaque doloremque ipsa iure quasi dicta voluptatum. Cum.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae eum laborum atque natus id delectus quam quia non, saepe molestiae vel architecto dolor fugiat consectetur odit doloribus dignissimos cupiditate praesentium.
-      </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores obcaecati excepturi debitis, assumenda. Voluptas, odit, tenetur. Voluptas officiis non dolorem!
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ab consectetur sapiente officia, at nam quaerat maxime quae amet autem. Quo delectus expedita dignissimos obcaecati cum, est itaque doloremque ipsa iure quasi dicta voluptatum. Cum.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae eum laborum atque natus id delectus quam quia non, saepe molestiae vel architecto dolor fugiat consectetur odit doloribus dignissimos cupiditate praesentium.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum excepturi pariatur cumque optio tempore porro eum obcaecati quam aperiam exercitationem praesentium odio, consequuntur soluta, totam dicta rem maiores, consequatur, deleniti.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, cumque, itaque debitis enim rerum non accusamus quos illum iste voluptas.
+      <p>
+          <% out.print(publicacion.getContenido());%>
       </p>
     </div>
     <hr>
