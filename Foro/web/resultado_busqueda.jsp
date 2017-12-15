@@ -54,7 +54,7 @@
              us = (Usuario) us.getObjects(att_val).get(0);
      %>
         
-        <a href="">
+        <a href="http://localhost:8084/publicacion.jsp?publicacion=<%=pub.getId()%>">
             <article class="publicacion-link">
                 <div class="avatar">
                      <img src="obtenerAvatar?id=<%=us.getId()%>" alt="">
