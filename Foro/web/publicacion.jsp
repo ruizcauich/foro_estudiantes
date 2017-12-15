@@ -49,7 +49,7 @@
   <!-- Contenedor Principal de los comentarios-->
   <div class="publicacion_formulario">
     <h2 class="titulo_h2">Comenta</h2>
-    <form class="" action="" method="post">
+    <form class="" action="Comentar" method="get">
       <textarea class="publicacion_textarea" name="comentario" rows="8" cols="80"></textarea>
       <input class="" id="idPublicacion" name="publicacion" rows="8" cols="80" value="<%out.print(publicacion.getId());%>">
       <input class="btn" type="submit" name="" value="Aceptar">

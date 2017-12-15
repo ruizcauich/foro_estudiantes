@@ -45,19 +45,26 @@ public class Comentar extends HttpServlet {
                 java.sql.Date fechaSQL = new java.sql.Date(fechaActual.getTime());
                    
                 Usuario usuario = seguridad.obtenerUsuarioEnSesion(request);
-                Publicacion publicacion;
+                Publicacion publicacion = new Publicacion();
                 
                 String contenido = request.getParameter("comentario");
                 
-                int idPublicacion = Integer.parseInt(request.getParameter("idPublicacion"));
+                int idPublicacion = Integer.parseInt(request.getParameter("publicacion"));
                 String [][] atributo_valor = {{"id",String.valueOf(idPublicacion)}};
                 
-                publicacion = (Publicacion)db.models.Publicacion.class.newInstance().getObjects(atributo_valor).get(0);
+                
+                publicacion = (Publicacion)publicacion.getObjects(atributo_valor).get(0);
+                
                 
                 Comentario comentario = new Comentario(usuario.getId(),fechaSQL,contenido,publicacion.getId());
                 comentario.save();
+
+                response.sendRedirect("http://localhost:8084/publicacion.jsp?publicacion=" + publicacion.getId());
                 
                 
+            }
+            else{
+                out.println("<h1> No autenticado</h1>");
             }
             
 
