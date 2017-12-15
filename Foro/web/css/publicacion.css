@@ -345,3 +345,7 @@ Caja del comentario
   border-radius: 3px;
 
 }
+
+#idPublicacion{
+    display: none;
+}
