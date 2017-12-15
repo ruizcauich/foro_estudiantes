@@ -1,5 +1,9 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page import="html.Header" %>
 <%@ page import="html.ControlSeguridad" %>
+<%@ page import="db.models.Publicacion" %>
+<%@ page import="db.models.Usuario" %>
+<%@ page import="db.Model" %>
 <% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +41,55 @@
       <h2 class="titulo_h2">
           Resultados de la busqueda:
       </h2>
+     <%  
+         Publicacion pub = new Publicacion();
+         ArrayList<Model> pubs =  pub.getObjectsLike( request.getParameter("buscar") );
+     %>
+        
+     <%
+         for(int i = 0; i<pubs.size(); i++){
+             pub = (Publicacion)pubs.get(i);
+             Usuario us = new Usuario();
+             String [][] att_val = {{"id",""+pub.getUsuario()}};
+             us = (Usuario) us.getObjects(att_val).get(0);
+     %>
+        
         <a href="">
+            <article class="publicacion-link">
+                <div class="avatar">
+                     <img src="obtenerAvatar?id=<%=us.getId()%>" alt="">
+                </div>
+                <div class="contenido">
+                    <div class="titulo">
+                        <h2><%=pub.getTopico()%></h2>
+                    </div>
+                    <div class="datos">
+                        <span class="usuario">
+                            <%=us.getNickname()%>
+                        </span>
+                        <span class="fecha-publicacion">
+                            <%=pub.getFecha().toString()%>
+                        </span>
+
+                    </div>
+                    <div class="resumen">
+                        <%
+                            if(pub.getContenido().length()>=220){
+                                out.print(pub.getContenido().substring(0, 220));
+                            }
+                            else{
+                                out.print(pub.getContenido());
+                            }
+                        %>
+                        
+                    </div>
+                 </div>
+            </article>
+        </a>
+     <%
+         }
+     %>
+        <%--<a href="">
             <article class="publicacion-link">
            <div class="avatar">
                 <img src="img/default-avatar.png" alt="">
@@ -108,7 +160,7 @@
                 </div>
             </div>
         </article>
-        </a>
+        </a>--%>
 
 
     </section>

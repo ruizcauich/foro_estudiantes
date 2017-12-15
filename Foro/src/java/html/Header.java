@@ -23,7 +23,7 @@ public class Header implements HtmlModel {
 "            <div class=\"contenedor\">\n" +
 "              <a href=\"index.jsp\"><img id=\"logo\" src=\"img/gif2.gif\"></a>\n" +
 "               <div class=\"busqueda\">\n" +
-"                   <form action=\"#\">\n" +
+"                   <form action=\"resultado_busqueda.jsp\" method=\"get\">\n" +
 "                       <input type=\"text\" name=\"buscar\">\n" +
 "                       <button  class=\"boton\" type=\"submit\">Buscar</button>\n" +
 "                   </form>\n" +
