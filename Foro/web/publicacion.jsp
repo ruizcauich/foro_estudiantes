@@ -25,6 +25,12 @@
   <link rel="stylesheet" href="css/botones.css">
   <link rel="stylesheet" href="css/titulos.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+  <script src="js/ajax.js" type="text/javascript"></script>
+  <srcript src="">
+      
+  </srcript>
+  
 </head>
 <body>
   <%=head.toHtml()%>
