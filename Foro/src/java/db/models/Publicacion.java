@@ -77,7 +77,30 @@ public class Publicacion extends Model{
           return false;
       }
     }
-
+    public ArrayList<Model> getObjectsLike(String cad){
+        ArrayList<Model> pubs = new ArrayList<Model>();            
+        ResultSet publicaciones = this.connection.ejecutarConsulta(
+                "SELECT * FROM Publicaciones WHERE contenido LIKE '%"+cad+"%' or"
+                        + " topico LIKE '%"+cad+"%' ORDER By fecha DESC;"
+        );
+        
+        try {
+            // Recupera datos de cada fila
+            while( publicaciones.next()){
+                this.usuario = publicaciones.getInt("usuario");
+                this.id = publicaciones.getInt("id");
+                this.fecha = publicaciones.getDate("fecha");
+                this.contenido = publicaciones.getString("contenido");
+                this.topico = publicaciones.getString("topico");
+                pubs.add( new Publicacion(usuario, id, fecha, contenido, topico));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return pubs;
+    }
     @Override
     public ArrayList<Model> getObjects(String[][] atributo_valor) {
         ArrayList<Model> pubs = new ArrayList<Model>();

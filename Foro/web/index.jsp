@@ -8,6 +8,7 @@
 <%@ page import="html.Header" %>
 <%@ page import="html.ControlSeguridad" %>
 <% Header head = new Header( ControlSeguridad.estaAutenticado(request) );%>
+<%@ page import="db.models.Usuario" %>
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,8 +103,8 @@
         
         <aside id="navegacion-lateral">
             <div class="resumen-usuario">
-               <span class="avatar"><img src="img/default-avatar.png" alt=""></span>
-               <h3 class="nombre_usuario">Nombre de usuario</h3>
+                <span class="avatar"><img src="obtenerAvatar?id=<%=ControlSeguridad.obtenerUsuarioEnSesion(request).getId()%>" alt=""></span>
+               <h3 class="nombre_usuario"><%=ControlSeguridad.obtenerUsuarioEnSesion(request).getNickname()%></h3>
             </div>
             <div class="area-de-notificacion">
                <h4>Notificaciones</h4>
