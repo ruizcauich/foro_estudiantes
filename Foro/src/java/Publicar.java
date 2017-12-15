@@ -78,7 +78,11 @@ public class Publicar extends HttpServlet {
                 Publicacion pub = new Publicacion(idUsuario,fechaSQL,contenido,titulo);
                 pub.save();
                 
-                response.sendRedirect("publicacion.jsp");
+                String [][] datos = {{"topico",titulo},{"contenido",contenido}};
+                pub = (Publicacion)pub.getObjects(datos).get(0);
+                
+                response.sendRedirect("publicacion.jsp?publicacion="+pub.getId());
+                
                 
             }
             else

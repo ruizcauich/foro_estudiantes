@@ -21,7 +21,7 @@ public class Header implements HtmlModel {
         String headerMenu = " <header>\n" +
 "        <nav>\n" +
 "            <div class=\"contenedor\">\n" +
-"              <a href=\"index.html\"><img id=\"logo\" src=\"img/gif2.gif\"></a>\n" +
+"              <a href=\"index.jsp\"><img id=\"logo\" src=\"img/gif2.gif\"></a>\n" +
 "               <div class=\"busqueda\">\n" +
 "                   <form action=\"resultado_busqueda.jsp\" method=\"get\">\n" +
 "                       <input type=\"text\" name=\"buscar\">\n" +

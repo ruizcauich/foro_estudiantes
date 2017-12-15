@@ -26,54 +26,7 @@
     <%=head.toHtml()%>
     <section class="contenedor">
        <div class="contenedor-contenido">
-        <a href="">
-            <article class="publicacion-link">
-           <div class="avatar">
-                <img src="img/default-avatar.png" alt="">
-            </div>
-            <div class="contenido">
-                <div class="titulo">
-                    <h2>Lorem ipsum dolor sit amet, consectetur.</h2>
-                </div>
-                <div class="datos">
-                    <span class="usuario">
-                        Usuario
-                    </span>
-                    <span class="fecha-publicacion">
-                        12-Julio-2017
-                    </span>
-
-                </div>
-                <div class="resumen">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint deserunt velit nihil, dolorem culpa perspiciatis eum harum itaque quos voluptas, molestiae blanditiis quae vitae, facere nisi est. Culpa est, ullam?
-                </div>
-            </div>
-        </article>
-        </a>
-        <a href="">
-            <article class="publicacion-link">
-           <div class="avatar">
-                <img src="img/default-avatar.png" alt="">
-            </div>
-            <div class="contenido">
-                <div class="titulo">
-                    <h2>Lorem ipsum dolor sit amet, consectetur.</h2>
-                </div>
-                <div class="datos">
-                    <span class="usuario">
-                        Usuario
-                    </span>
-                    <span class="fecha-publicacion">
-                        12-Julio-2017
-                    </span>
-
-                </div>
-                <div class="resumen">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint deserunt velit nihil, dolorem culpa perspiciatis eum harum itaque quos voluptas, molestiae blanditiis quae vitae, facere nisi est. Culpa est, ullam?
-                </div>
-            </div>
-        </article>
-        </a>
+           <%%>
         <a href="">
             <article class="publicacion-link">
            <div class="avatar">
