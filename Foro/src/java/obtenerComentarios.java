@@ -76,6 +76,9 @@ public class obtenerComentarios extends HttpServlet {
                     comToCom = (ComentarioToComentario)comsToComs.get(j);
                     if( com.getId() ==comToCom.getComentarioSecundario() ){
                         coms.remove(i);
+                        // por que se quita un comentario se debe quitar uno al
+                        // contador
+                        i--;
                         break;
                     }
                 }

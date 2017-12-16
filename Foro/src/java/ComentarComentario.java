@@ -72,8 +72,13 @@ public class ComentarComentario extends HttpServlet {
                 
                 // traemos de la base de datos ya con un id
                 String nuevoComentario[][]= {{"contenido", comentario.getContenido()}};
+                // Espera a que la base de datos se ponga al día con
+                // el comentario guardado
+                while( comentario.getObjects(nuevoComentario).size()==0){}
+                
                 comentario = (Comentario)comentario.getObjects(nuevoComentario).get(0);
                 
+                // Creamos la relación entre los comentarios
                 ComentarioToComentario cTc = new ComentarioToComentario();
                 cTc.setComentarioPrincipal(comentarioSeleccionado);
                 cTc.setComentarioSecundario( comentario.getId());
