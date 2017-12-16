@@ -48,6 +48,11 @@ function actualizarLista( aumentarComentarios ){
       for(com of comentarios){
         if( com.dataset.comentario )  com.addEventListener("click", mostrarReply);
       }
+      
+      var eliminados = document.getElementsByClassName("fa fa-window-close");
+      for(elim of eliminados){
+        if( elim.dataset.eliminado )  elim.addEventListener("click", borrarComentario);
+      }
     }
   ); // fin de ejecutarAjax
 
@@ -69,5 +74,19 @@ function mostrarReply(evento){
     }
   );
   }
+
+}
+
+
+var comentarioEliminado;
+function borrarComentario(evento){
+  comentarioEliminado = this.dataset.eliminado;
+  ejecutarAjax("BorrarComentario","comentario="+comentarioEliminado,"GET",
+    function(respuesta){
+        
+        actualizarLista(false);
+    }
+    );
+ 
 
 }

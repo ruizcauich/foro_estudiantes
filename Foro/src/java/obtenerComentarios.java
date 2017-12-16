@@ -7,7 +7,9 @@
 import db.Model;
 import db.models.Comentario;
 import db.models.ComentarioToComentario;
+import db.models.Publicacion;
 import db.models.Usuario;
+import html.ControlSeguridad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -41,6 +43,11 @@ public class obtenerComentarios extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             int cont = Integer.parseInt( request.getParameter("cont") );
             String pubId =  request.getParameter("publicacion");
+            String [][] atributo_valor_pub = {{"id", pubId}};
+            
+            Publicacion pub = new Publicacion();
+            pub = (Publicacion)pub.getObjects(atributo_valor_pub).get(0);
+            
             Comentario com = new Comentario();
             String [][] atributo_valor = {{"publicacion", pubId}};
             ArrayList<Model> coms = com.getObjects( atributo_valor );
@@ -48,6 +55,10 @@ public class obtenerComentarios extends HttpServlet {
             ComentarioToComentario comToCom = new ComentarioToComentario();
             // obtener todas las relaciones comentario-comentario
             ArrayList<Model> comsToComs = comToCom.getAllObjects();
+            
+            //Obtener el usuario en sesion
+            ControlSeguridad control = new ControlSeguridad();
+            Usuario usuarioEnSesion = control.obtenerUsuarioEnSesion(request);
             
             
             out.println("<!DOCTYPE html>");
@@ -70,7 +81,7 @@ public class obtenerComentarios extends HttpServlet {
                 }
             }
             String impComs = "";
-            // Impresion de comentarios
+
             for( int i = 0; i<coms.size()&& i<cont*4; i++){
                 com = (Comentario)coms.get(i);
                 String us_id[][]={{"id", ""+ com.getUsuario()}};
@@ -83,10 +94,27 @@ public class obtenerComentarios extends HttpServlet {
 "          </div>\n" +
 "          <!-- Contenedor del comentario  -->\n" +
 "          <div class=\"comment-box\">\n" +
-"            <div class=\"comment-head\">\n" +
-"              <h6 class=\"comment-name by-author\"><a href=\"#\">"+us.getNickname()+"</a></h6>\n" +
-"              <span>Hace 20 minutos</span>\n" +
-"              <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n" +
+"            <div class=\"comment-head\">\n";
+                
+                
+                if(com.getUsuario() == pub.getUsuario()){
+                 impComs+=
+"              <h6 class=\"comment-name by-author\"><a href=\"#\">"+us.getNickname()+"</a></h6>\n";
+
+                }
+                else{
+                    impComs+=
+"              <h6 class=\"comment-name\"><a href=\"#\">"+us.getNickname()+"</a></h6>\n";
+                }
+                
+                impComs+=
+"              <span>" + com.getFecha()+ "</span>\n";
+                if(usuarioEnSesion.getId() == com.getUsuario()){
+                impComs +=
+ "              <i data-eliminado=\""+com.getId()+"\" class=\"fa fa-window-close\" aria-hidden=\"true\"></i>\n";                       
+                }
+      
+                impComs +=
 "              <i data-comentario=\""+com.getId()+"\" class=\"fa fa-reply\" aria-hidden=\"true\"></i>\n" +
 "            </div>\n" +
 "            <div class=\"comment-content\">\n" +
@@ -125,7 +153,7 @@ public class obtenerComentarios extends HttpServlet {
 "            <div class=\"comment-box\">\n" +
 "              <div class=\"comment-head\">\n" +
 "                <h6 class=\"comment-name\"><a href=\"#\">"+us.getNickname()+"</a></h6>\n" +
-"                <span>Hace 10 minutos</span>\n" +
+"                <span>"+ com_sec.getFecha()+ "</span>\n" +
 //"                <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n" +
 //"                <i class=\"fa fa-reply\" aria-hidden=\"true\"></i>\n" +
 "              </div>\n" +

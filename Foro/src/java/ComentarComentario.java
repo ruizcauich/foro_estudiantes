@@ -41,24 +41,33 @@ public class ComentarComentario extends HttpServlet {
            ControlSeguridad seguridad = new ControlSeguridad();
             
             if(seguridad.estaAutenticado(request)){
-                
+                //Obtenemos la fecha actual
                 Date fechaActual = new Date();
                 java.sql.Date fechaSQL = new java.sql.Date(fechaActual.getTime());
-                   
+                
+                //Obtenemos el usuario en sesion
                 Usuario usuario = seguridad.obtenerUsuarioEnSesion(request);
+                
+                //Creamos una nueva publicacion
                 Publicacion publicacion = new Publicacion();
                 
+                //Obtengo el contenido del comentario de la respuesta
                 String contenido = request.getParameter("comentario");
+                //Obtengo el comentario seleccionado al que le haremos una replica
                 int comentarioSeleccionado =Integer.parseInt( request.getParameter("comentarioSeleccionado"));
                 
+                //Obtengo el id de la publicacion
                 int idPublicacion = Integer.parseInt(request.getParameter("publicacion"));
+                
+                //creo la matriz con el id de la publicacion
                 String [][] atributo_valor = {{"id",String.valueOf(idPublicacion)}};
                 
-                
+                //Obtengo la publicacion de la base de datos
                 publicacion = (Publicacion)publicacion.getObjects(atributo_valor).get(0);
                 
-                
+                //creamos el comentario secundario
                 Comentario comentario = new Comentario(usuario.getId(),fechaSQL,contenido,publicacion.getId());
+                // guardamos en la base de datos
                 comentario.save();
                 
                 // traemos de la base de datos ya con un id

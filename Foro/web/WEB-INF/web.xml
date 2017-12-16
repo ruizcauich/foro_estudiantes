@@ -8,6 +8,10 @@
         <servlet-name>Comentar</servlet-name>
         <servlet-class>Comentar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BorrarComentario</servlet-name>
+        <servlet-class>BorrarComentario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Publicar</servlet-name>
         <url-pattern>/Publicar</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Comentar</servlet-name>
         <url-pattern>/Comentar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarComentario</servlet-name>
+        <url-pattern>/BorrarComentario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
