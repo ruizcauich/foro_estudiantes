@@ -8,7 +8,30 @@
  --%>
  <%@ page import="html.Header" %>
 <%@ page import="html.ControlSeguridad" %>
+<%@ page import="db.models.Publicacion" %>
 <% Header head = new Header(ControlSeguridad.estaAutenticado(request));%>
+
+<%
+    String [][] atributo_valor = {{"id", request.getParameter("publicacion")}};
+    Publicacion pub = (Publicacion)(new Publicacion()).getObjects(atributo_valor).get(0);
+    
+    // Evita que alguien que no sea dueño de esta publicacion la modifique accediendo
+    // directamente a la url
+    if( ControlSeguridad.obtenerUsuarioEnSesion(request) ==null ||
+        ControlSeguridad.obtenerUsuarioEnSesion(request).getId()!= pub.getUsuario()
+       ){
+        response.sendRedirect("publicacion.jsp?publicacion="+pub.getId());
+        
+    }
+    String contenido = request.getParameter("contenido");
+    if( contenido!=null){
+        pub.setContenido(contenido);
+        pub.setTopico( request.getParameter("titulo"));
+        pub.update();
+        response.sendRedirect("publicacion.jsp?publicacion="+pub.getId());
+    }
+    
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +74,11 @@
            <p>
                Escribe en la sección de abajo para poder hacer una publicación que cualquiera en este foro pueda ver.
            </p>
-            <form action="Publicar" class="publicar" method="post">
-                <input id="titulo-publicar" type="text" name="titulo" value=""placeholder="Titulo">
-                <textarea name="contenido" id="" cols="30" rows="10"></textarea>
+            <form action="" class="publicar" method="post">
+                <input id="titulo-publicar" type="text" name="titulo" value="<%=pub.getTopico()%>"placeholder="Titulo">
+                <textarea name="contenido" id="" cols="30" rows="10" >
+                    <%=pub.getContenido()%>
+                </textarea>
 
                 <div>
                     <button type="submit" class="btn">Publicar</button>

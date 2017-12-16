@@ -27,9 +27,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   
   <script src="js/ajax.js" type="text/javascript"></script>
-  <srcript src="">
-      
-  </srcript>
+  <script src="js/comentarios.js" type="text/javascript"></script>
   
 </head>
 <body>
@@ -51,11 +49,17 @@
       </p>
     </div>
     <hr>
+    <%
+        if( ControlSeguridad.estaAutenticado(request))
+            if(publicacion.getUsuario() == ControlSeguridad.obtenerUsuarioEnSesion(request).getId()){
+    %>
+    <a id="modificar_publicacion" href="modificarPublicacion.jsp?publicacion=<%=publicacion.getId()%>" class="btn">Modificar</a>
+    <%}%>
   </section>
   <!-- Contenedor Principal de los comentarios-->
   <div class="publicacion_formulario">
     <h2 class="titulo_h2">Comenta</h2>
-    <form class="" action="Comentar" method="get">
+    <form id="comentar_publicacion" class="" action="Comentar" method="get">
       <textarea class="publicacion_textarea" name="comentario" rows="8" cols="80"></textarea>
       <input class="" id="idPublicacion" name="publicacion" rows="8" cols="80" value="<%out.print(publicacion.getId());%>">
       <input class="btn" type="submit" name="" value="Aceptar">
@@ -173,6 +177,7 @@
         </li>
       </ul>
     </ul>
+    <input type="button" class="btn" id="mas_comentarios" value="Ver más comentarios">
   </div>
 </body>
 </html>

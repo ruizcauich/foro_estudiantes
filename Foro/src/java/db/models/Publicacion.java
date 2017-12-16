@@ -47,12 +47,14 @@ public class Publicacion extends Model{
                 + ",'"+topico+"');";
                
             if(connection.ejecutarInstruccion(query)){
+                connection.desconectar();
                 return this;
             }
-               
+            connection.desconectar();
             return null;
         }catch(Exception e){
             e.printStackTrace();
+            connection.desconectar();
             return null;
         }
     }
@@ -69,11 +71,14 @@ public class Publicacion extends Model{
                   + " topico = '"+topico+"' WHERE id = '"+id+"';";
             
             if(connection.ejecutarInstruccion(query)){
+                connection.desconectar();
                 return true;
             }
+            connection.desconectar();
             return false;
       }catch(Exception e){
           e.printStackTrace();
+          connection.desconectar();
           return false;
       }
     }
@@ -98,7 +103,7 @@ public class Publicacion extends Model{
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        connection.desconectar();
         return pubs;
     }
     @Override
@@ -129,7 +134,7 @@ public class Publicacion extends Model{
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        connection.desconectar();
         return pubs;
     }
 
@@ -152,7 +157,7 @@ public class Publicacion extends Model{
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        connection.desconectar();
         return pubs;
     }
     
@@ -162,12 +167,15 @@ public class Publicacion extends Model{
             String query = "DELETE FROM Publicaciones WHERE id = '"+id+"'";
             if(connection.ejecutarInstruccion(query))
             {
+                connection.desconectar();
                 return true;
             }
+            connection.desconectar();
             return false;
         
         }catch (Exception e) {
             e.printStackTrace();
+            connection.desconectar();
             return false;
         }
     }

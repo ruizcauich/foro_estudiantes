@@ -74,12 +74,15 @@ public class Usuario extends Model {
                 String query = "INSERT INTO Usuarios VALUES(NULL,'"+nombre+"','"+apellidos+"','"+institucion+"','"+nickname+"'"
                         + ",'"+contrasena+"','"+email+"','NULL','"+((esModerador)?'1':'0')+"');";
                 if(connection.ejecutarInstruccion(query)){
+                    connection.desconectar();
                     return this;
                 }
             }
+            connection.desconectar();
             return null;
         }catch(Exception e){
             e.printStackTrace();
+            connection.desconectar();
             return null;
         }
     }
@@ -100,11 +103,14 @@ public class Usuario extends Model {
             
                 if(connection.ejecutarInstruccion(query)){
                     this.actualizarAvatar(avatar);
+                    connection.desconectar();
                     return true;
                 }
+                connection.desconectar();
             return false;
         }catch(Exception e){
             e.printStackTrace();
+            connection.desconectar();
             return false;
         }
     }
@@ -142,7 +148,7 @@ public class Usuario extends Model {
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        connection.desconectar();
         return usrs;
         
         
@@ -172,7 +178,7 @@ public class Usuario extends Model {
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        connection.desconectar();
         return usrs;
     }
     
@@ -181,13 +187,15 @@ public class Usuario extends Model {
         try{
             String query = "DELETE FROM Usuarios WHERE id = '"+id+"'";
             if(connection.ejecutarInstruccion(query))
-            {
+            {connection.desconectar();
                 return true;
             }
+            connection.desconectar();
             return false;
         
         }catch (Exception e) {
             e.printStackTrace();
+            connection.desconectar();
             return false;
         }
     }
@@ -196,10 +204,11 @@ public class Usuario extends Model {
         
         
         String query = "Update Usuarios SET avatar = ?"+" WHERE id="+this.id;
+        connection.conectar();
         PreparedStatement ps = connection.getConnectionToDB().prepareStatement(query);
         ps.setBlob(1, avatar);
         ps.executeUpdate();
-        
+        connection.desconectar();
         return false;
     }
 

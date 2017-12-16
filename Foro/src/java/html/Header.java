@@ -30,11 +30,12 @@ public class Header implements HtmlModel {
 "               </div>\n" +
 "                <ul class=\"menu\">\n" +
 "                    <li><a href=\"/\">Inicio</a></li>\n" +
-"                    <li><a href=\"perfil.jsp\">Perfil</a></li>\n" +
+                ((estaAutenticado)?
+"                    <li><a href=\"perfil.jsp\">Perfil</a></li>\n":"") +
                 ((!estaAutenticado)?
 "                    <li><a href=\"login.jsp\">Login</a></li>\n":"<li><a href=\"publicar.jsp\">Publicar Post</a></li>\n") +
                ((!estaAutenticado)?
-"                    <li><a href=\"registro.jsp\">Registrar</a></li>\n":"") +
+"                    <li><a href=\"registro.jsp\">Registrar</a></li>\n":"<li><a href=\"logout\">Logout</a></li>\n") +
 "                </ul>\n" +
 "            </div>\n" +
 "        </nav>\n" +

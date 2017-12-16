@@ -26,7 +26,7 @@
     <%=head.toHtml()%>
     <section class="contenedor">
        <div class="contenedor-contenido">
-           <%%>
+           
         <a href="">
             <article class="publicacion-link">
            <div class="avatar">
@@ -56,8 +56,20 @@
         
         <aside id="navegacion-lateral">
             <div class="resumen-usuario">
+                <%
+                    if(ControlSeguridad.obtenerUsuarioEnSesion(request) !=null)
+                    {
+                %>
                 <span class="avatar"><img src="obtenerAvatar?id=<%=ControlSeguridad.obtenerUsuarioEnSesion(request).getId()%>" alt=""></span>
                <h3 class="nombre_usuario"><%=ControlSeguridad.obtenerUsuarioEnSesion(request).getNickname()%></h3>
+               <%
+                   }else{
+               %>
+               <span class="avatar"><img src="img/default-avatar.png" alt=""></span>
+               <h3 class="nombre_usuario">Anonimo</h3>
+               <%
+                   }
+               %>
             </div>
             <div class="area-de-notificacion">
                <h4>Notificaciones</h4>

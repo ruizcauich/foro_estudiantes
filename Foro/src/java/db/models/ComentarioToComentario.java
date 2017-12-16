@@ -32,10 +32,12 @@ public class ComentarioToComentario extends Model {
         String query = "INSERT INTO `Comentarios-Comentarios` VALUES(NULL,'"+comentarioPrincipal+"'"
                + ",'"+comentarioSecundario+"');";
         if(connection.ejecutarInstruccion(query)){
+            connection.desconectar();
             return this;
         }
         else
         {
+            connection.desconectar();
             return null;
         } 
     }
@@ -77,7 +79,7 @@ public class ComentarioToComentario extends Model {
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        connection.desconectar();
         return comts;
     }
 
@@ -103,6 +105,7 @@ public class ComentarioToComentario extends Model {
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        connection.desconectar();
         return comts;
     }
 
@@ -137,12 +140,15 @@ public class ComentarioToComentario extends Model {
             
             if(connection.ejecutarInstruccion(query))
             {
+                connection.desconectar();
                 return true;
             }
+            connection.desconectar();
             return false;
             
         }catch(Exception e){
             e.printStackTrace();
+            connection.desconectar();
             return false;
         }
     }

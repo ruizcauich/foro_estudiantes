@@ -39,10 +39,16 @@ public class obtenerComentarios extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            int pubId = Integer.parseInt( request.getParameter("publicacion"));
+            int cont = Integer.parseInt( request.getParameter("cont") );
+            String pubId =  request.getParameter("publicacion");
             Comentario com = new Comentario();
-            String [][] atributo_valor = {{"publicacion", ""+pubId}};
+            String [][] atributo_valor = {{"publicacion", pubId}};
             ArrayList<Model> coms = com.getObjects( atributo_valor );
+            // comentarios a comentarios
+            ComentarioToComentario comToCom = new ComentarioToComentario();
+            // obtener todas las relaciones comentario-comentario
+            ArrayList<Model> comsToComs = comToCom.getAllObjects();
+            
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -51,37 +57,25 @@ public class obtenerComentarios extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            //ArrayList<Integer> coms_sec = new ArrayList<Integer> ();
-            ComentarioToComentario comToCom = new ComentarioToComentario();
-            
-            ArrayList<Model> comsToComs = comToCom.getAllObjects();
-            
-            ArrayList<Comentario> comentariosPrincipales = new ArrayList<Comentario> ();
-            
-            // Filrar los comentarios principales
             for(int i=0; i<coms.size(); i++){
+                // obtenemos el comentario a evaluar si es secundario
                 com = (Comentario)coms.get(i);
                 
-                
-                
-                
-                
-                for(int j=0; j<comsToComs.size(); j++){
+                for(int j=0; j< comsToComs.size(); j++){
                     comToCom = (ComentarioToComentario)comsToComs.get(j);
-                    if( com.getId() == comToCom.getComentarioPrincipal() ){
-                        comentariosPrincipales.add(com);
+                    if( com.getId() ==comToCom.getComentarioSecundario() ){
+                        coms.remove(i);
+                        break;
                     }
                 }
-                
             }
-            
-            
+            String impComs = "";
             // Impresion de comentarios
-            for( int i = 0; i<comentariosPrincipales.size(); i++){
-                com = comentariosPrincipales.get(i);
+            for( int i = 0; i<coms.size()&& i<cont*4; i++){
+                com = (Comentario)coms.get(i);
                 String us_id[][]={{"id", ""+ com.getUsuario()}};
                 Usuario us = (Usuario)(new Usuario()).getObjects( us_id ).get(0);
-                String impComs = "<li>\n" +
+                impComs += "<li>\n" +
 "        <div class=\"comment-main-level\">\n" +
 "          <!--AVATAR -->\n" +
 "          <div class=\"comment-avatar\">\n" +
@@ -93,7 +87,7 @@ public class obtenerComentarios extends HttpServlet {
 "              <h6 class=\"comment-name by-author\"><a href=\"#\">"+us.getNickname()+"</a></h6>\n" +
 "              <span>Hace 20 minutos</span>\n" +
 "              <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n" +
-"              <i class=\"fa fa-reply\" aria-hidden=\"true\"></i>\n" +
+"              <i data-comentario=\""+com.getId()+"\" class=\"fa fa-reply\" aria-hidden=\"true\"></i>\n" +
 "            </div>\n" +
 "            <div class=\"comment-content\">\n" +
                         com.getContenido()+
@@ -115,7 +109,7 @@ public class obtenerComentarios extends HttpServlet {
                 for(int j=0; j<comsToComs.size(); j++ ){
                     //para traer el comentario secundario corespondiente
                    String comentario_sec[][] ={{
-                       "comentarioSecundario",
+                       "id",
                        ""+((ComentarioToComentario)comsToComs.get(j)).getComentarioSecundario()
                    }}; 
                    
@@ -125,15 +119,15 @@ public class obtenerComentarios extends HttpServlet {
                    impComs+="<li>\n" +
 "            <!--AVATAR -->\n" +
 "            <div class=\"comment-avatar\">\n" +
-"              <img src=\"img/obtenerAvatar?id="+us.getId()+"\" alt=\"No se encontró la imagen\">\n" +
+"              <img src=\"obtenerAvatar?id="+us.getId()+"\" alt=\"No se encontró la imagen\">\n" +
 "            </div>\n" +
 "            <!-- Contenedor del comentario  -->\n" +
 "            <div class=\"comment-box\">\n" +
 "              <div class=\"comment-head\">\n" +
 "                <h6 class=\"comment-name\"><a href=\"#\">"+us.getNickname()+"</a></h6>\n" +
 "                <span>Hace 10 minutos</span>\n" +
-"                <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n" +
-"                <i class=\"fa fa-reply\" aria-hidden=\"true\"></i>\n" +
+//"                <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n" +
+//"                <i class=\"fa fa-reply\" aria-hidden=\"true\"></i>\n" +
 "              </div>\n" +
 "              <div class=\"comment-content\">\n" +
                            com_sec.getContenido()+
@@ -148,7 +142,7 @@ public class obtenerComentarios extends HttpServlet {
                 
             }
             
-            
+            out.println(impComs);
             out.println("</body>");
             out.println("</html>");
         }

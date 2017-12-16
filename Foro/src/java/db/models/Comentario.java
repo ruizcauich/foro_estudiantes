@@ -43,11 +43,14 @@ public class Comentario extends Model{
             String query = "INSERT INTO Comentarios VALUES(NULL,'"+usuario+"','"+fecha+"','"+contenido+"'"
                 + ",'"+publicacion+"');";
             if(connection.ejecutarInstruccion(query)){
+                connection.desconectar();
                 return this;
             }
+            connection.desconectar();
             return null;
         }catch(Exception e){
             e.printStackTrace();
+            connection.desconectar();
             return null;
         }
     }
@@ -64,10 +67,13 @@ public class Comentario extends Model{
             System.out.println(query);
             
             if(connection.ejecutarInstruccion(query)){
+                connection.desconectar();
                 return true;
             }
+            connection.desconectar();
             return false;
        }catch(Exception e){
+           connection.desconectar();
            e.printStackTrace();
            return false;
        }
@@ -101,7 +107,9 @@ public class Comentario extends Model{
                 comts.add( new Comentario(id, usuario, fecha, contenido, publicacion));
                 
             }
+            connection.desconectar();
         } catch (SQLException ex) {
+            connection.desconectar();
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -126,10 +134,11 @@ public class Comentario extends Model{
                 comts.add( new Comentario(id, usuario, fecha, contenido, publicacion));
                 
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        connection.desconectar();
         return comts;
     }
     
@@ -142,12 +151,15 @@ public class Comentario extends Model{
             String query = "DELETE FROM Comentarios WHERE id = '"+id+"'";
             if(connection.ejecutarInstruccion(query))
             {
+                connection.desconectar();
                 return true;
             }
+            connection.desconectar();
             return false;
         
         }catch (Exception e) {
             e.printStackTrace();
+            connection.desconectar();
             return false;
         }
     }

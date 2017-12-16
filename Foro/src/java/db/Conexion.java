@@ -12,7 +12,10 @@ package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conexion {
     //Configuracion de los datos de la BD
@@ -27,7 +30,18 @@ public class Conexion {
         return con;
     }
     public Conexion() {
-         try{
+         
+    }
+    public void desconectar(){
+        try {
+            if(!con.isClosed()) con.close();
+            if(!st.isClosed()) st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void conectar(){
+        try{
             Class.forName("com.mysql.jdbc.Driver").newInstance( );
             String servidor = "jdbc:mysql://"+host+"/"+nombre_BD;
             con = DriverManager.getConnection(servidor,usuario,pass);
@@ -40,6 +54,7 @@ public class Conexion {
     }
     public ResultSet ejecutarConsulta( String query){
          try {
+             conectar();
             return  st.executeQuery(query);
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,6 +64,7 @@ public class Conexion {
     
     public boolean ejecutarInstruccion(String query){
         try {
+            conectar();
             st.executeUpdate(query);
             return true;
         } catch (Exception e) {
