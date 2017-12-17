@@ -54,7 +54,7 @@
     <input type="password" class="campo" name="confirmar_contraseña" placeholder="Confirmar Contraseña">
     <input type="submit" value="Continuar" class="btn medio block">
   </form>
-  <p>¿Ya tienes una cuenta? <a href="">¡Ingresa!</a></p>
+  <p>¿Ya tienes una cuenta? <a href="http://localhost:8084/login.jsp">¡Ingresa!</a></p>
 
 </body>
 </html>

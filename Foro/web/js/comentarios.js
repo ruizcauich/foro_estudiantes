@@ -53,6 +53,12 @@ function actualizarLista( aumentarComentarios ){
       for(elim of eliminados){
         if( elim.dataset.eliminado )  elim.addEventListener("click", borrarComentario);
       }
+      
+      var actualizados = document.getElementsByClassName("fa fa-pencil");
+      for(act of actualizados){
+        if( act.dataset.actualizado )  act.addEventListener("click", actualizarComentario);
+      }
+      
     }
   ); // fin de ejecutarAjax
 
@@ -89,4 +95,19 @@ function borrarComentario(evento){
     );
  
 
+}
+
+var contenidoActualizado;
+function actualizarComentario(evento){
+    var comentario = this.dataset.actualizado;
+    contenidoActualizado = prompt("Escribe de nuevo tu comentario: ");
+    if(contenidoActualizado){
+        ejecutarAjax("ActualizarComentario",
+        "comentario="+comentario+"&contenidoActualizado="+contenidoActualizado,
+                "GET",
+                function(respuesta){
+                    
+                    actualizarLista(false);
+                });
+    }
 }

@@ -61,6 +61,7 @@ public class obtenerComentarios extends HttpServlet {
             Usuario usuarioEnSesion = control.obtenerUsuarioEnSesion(request);
             
             
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -112,9 +113,13 @@ public class obtenerComentarios extends HttpServlet {
                 
                 impComs+=
 "              <span>" + com.getFecha()+ "</span>\n";
-                if(usuarioEnSesion.getId() == com.getUsuario()){
+                if(usuarioEnSesion.getId() == com.getUsuario() || usuarioEnSesion.isEsModerador()){
                 impComs +=
  "              <i data-eliminado=\""+com.getId()+"\" class=\"fa fa-window-close\" aria-hidden=\"true\"></i>\n";                       
+                }
+                if(usuarioEnSesion.getId() == com.getUsuario()){    
+               impComs+=
+"              <i data-actualizado=\""+com.getId()+"\" class=\"fa fa-pencil\" aria-hidden=\"true\"></i>\n";                                       
                 }
       
                 impComs +=

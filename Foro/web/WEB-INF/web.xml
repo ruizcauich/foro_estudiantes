@@ -12,6 +12,10 @@
         <servlet-name>BorrarComentario</servlet-name>
         <servlet-class>BorrarComentario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActualizarComentario</servlet-name>
+        <servlet-class>ActualizarComentario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Publicar</servlet-name>
         <url-pattern>/Publicar</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>BorrarComentario</servlet-name>
         <url-pattern>/BorrarComentario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarComentario</servlet-name>
+        <url-pattern>/ActualizarComentario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

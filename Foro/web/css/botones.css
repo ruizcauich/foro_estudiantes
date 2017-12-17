@@ -8,6 +8,7 @@
   border-radius: 13px;
   width: 150px;
   margin: 20px auto;
+  text-align: center;
 }
 
 .btn:hover{
@@ -17,9 +18,9 @@
 }
 
 .medio{
-  width: 200px;
+  width: 220px;
   margin: 40px auto;
-  padding: 15px 25px;
+  padding: 15px 15px;
   font-size: 1.2em;
 }
 

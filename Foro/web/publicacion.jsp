@@ -177,7 +177,7 @@
         </li>
       </ul>
     </ul>
-    <input type="button" class="btn" id="mas_comentarios" value="Ver más comentarios">
+    <input type="button" class="btn medio block" id="mas_comentarios" value="Ver más comentarios">
   </div>
 </body>
 </html>
