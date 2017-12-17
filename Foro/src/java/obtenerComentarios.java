@@ -161,7 +161,17 @@ public class obtenerComentarios extends HttpServlet {
 "            <div class=\"comment-box\">\n" +
 "              <div class=\"comment-head\">\n" +
 "                <h6 class=\"comment-name\"><a href=\"#\">"+us.getNickname()+"</a></h6>\n" +
-"                <span>"+ com_sec.getFecha()+ "</span>\n" +
+"                <span>"+ com_sec.getFecha()+ "</span>\n";
+                if(usuarioEnSesion.getId() == com_sec.getUsuario() || usuarioEnSesion.isEsModerador()){
+                impComs +=
+ "              <i data-eliminado=\""+com_sec.getId()+"\" class=\"fa fa-window-close\" aria-hidden=\"true\"></i>\n";                       
+                }                   
+                   
+                if(usuarioEnSesion.getId() == com_sec.getUsuario()){    
+                 impComs+=
+"              <i data-actualizado=\""+com_sec.getId()+"\" class=\"fa fa-pencil\" aria-hidden=\"true\"></i>\n";                                       
+                }
+                impComs +=             
 //"                <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\n" +
 //"                <i class=\"fa fa-reply\" aria-hidden=\"true\"></i>\n" +
 "              </div>\n" +
