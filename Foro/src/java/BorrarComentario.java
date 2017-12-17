@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 
+import db.Model;
 import db.models.Comentario;
+import db.models.ComentarioToComentario;
 import html.ControlSeguridad;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,13 +43,30 @@ public class BorrarComentario extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("comentario"));
                 
                 Comentario comentario = new Comentario ();
-                String [][] atributo_valor = {{"id",String.valueOf(id)}};
+                String [][] atributo_valor = {{"id",""+id}};
                 comentario = (Comentario)comentario.getObjects(atributo_valor).get(0);
                 
-                comentario.delete();
+                   
+                ComentarioToComentario comentTocoment = new ComentarioToComentario();
+                String [][] atributo_valor2 = {{"comentarioPrincipal",""+id}};
+                
+                ArrayList<Model>listaSecundarios = comentTocoment.getObjects(atributo_valor2);
+                 
+                int tamano = listaSecundarios.size();
+                
+               
+                for(int i = 0; i < tamano; i++){
+                    ComentarioToComentario auxiliarctc = new ComentarioToComentario();
+                    auxiliarctc = (ComentarioToComentario)listaSecundarios.get(i);
 
-            
-            
+                    Comentario auxiliarc = new Comentario();
+                    String [][] atributos = {{"id",""+auxiliarctc.getComentarioSecundario()}};
+                    auxiliarc = (Comentario)auxiliarc.getObjects(atributo_valor).get(0);
+
+                    auxiliarc.delete();
+                }   
+                comentario.delete();
+                
         }
     }
 
