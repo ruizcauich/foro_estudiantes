@@ -56,12 +56,12 @@ public class BorrarComentario extends HttpServlet {
                 
                
                 for(int i = 0; i < tamano; i++){
-                    ComentarioToComentario auxiliarctc = new ComentarioToComentario();
+                    ComentarioToComentario auxiliarctc ;
                     auxiliarctc = (ComentarioToComentario)listaSecundarios.get(i);
 
                     Comentario auxiliarc = new Comentario();
                     String [][] atributos = {{"id",""+auxiliarctc.getComentarioSecundario()}};
-                    auxiliarc = (Comentario)auxiliarc.getObjects(atributo_valor).get(0);
+                    auxiliarc = (Comentario)auxiliarc.getObjects(atributos).get(0);
 
                     auxiliarc.delete();
                 }   
